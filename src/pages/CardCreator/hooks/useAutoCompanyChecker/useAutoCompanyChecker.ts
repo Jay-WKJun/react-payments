@@ -13,7 +13,7 @@ export function useAutoCompanyChecker(cardNumber1?: string, cardNumber2?: string
 
     const cardCompany = autoCompanyChecker(cardNumber1.concat(cardNumber2));
     if (cardCompany) {
-      cardContextApis?.dispatch({ type: 'cardCompanies', payload: { index: 0, value: cardCompany } });
+      cardContextApis?.setOneCardState({ type: 'cardCompanies', index: 0, newState: { value: cardCompany }});
     }
   }, [cardNumber1, cardNumber2, cardContextApis]);
 }

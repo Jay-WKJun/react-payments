@@ -1,25 +1,35 @@
 import React, { ChangeEvent } from 'react';
 
-import { CardPasswordInputElement, useCardContextApis } from '@/contexts/CardContext';
+import { CardPasswordState, useCardContextApis } from '@/contexts/CardContext';
 import { filterNumber } from '@/utils';
 
 import { CardInfoInputElement } from '../../components';
+import { checkIsPasswordFulfilled, validateCardPassword } from './cardPasswordChecker';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 
 interface PasswordInputProps {
-  password: CardPasswordInputElement;
+  password: CardPasswordState;
   index: number;
 }
 
 export function PasswordInput({ password, index }: PasswordInputProps) {
-  const { value, setRef, errorMessage } = password;
+  const { value, errorMessage } = password;
   const isError = !!errorMessage;
 
   const cardContextApis = useCardContextApis();
 
+  const { focusNext, setRef } = useSequentialFocus();
+
   const changeEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'passwords', payload: { index, value } });
+        const errorMessage = validateCardPassword(value);
+        const newPasswordState = { value, errorMessage };
+        if (checkIsPasswordFulfilled(newPasswordState)) {
+          focusNext('passwords', index);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'passwords', index, newState: newPasswordState });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +42,8 @@ export function PasswordInput({ password, index }: PasswordInputProps) {
   };
 
   const handlePasswordInputFocus = () => {
-    cardContextApis?.dispatch({ type: 'passwords', payload: { index, value: value || '' } });
+    const errorMessage = validateCardPassword(value);
+    cardContextApis?.setOneCardState({ type: 'passwords', index, newState: { ...password, errorMessage } });
   };
 
   return (
@@ -40,7 +51,9 @@ export function PasswordInput({ password, index }: PasswordInputProps) {
       type="password"
       className="input-basic w-15 mr-10"
       value={value ?? ''}
-      ref={setRef.bind(password)}
+      ref={(el) => {
+        setRef('passwords', index, el);
+      }}
       changeEventProps={changeEventProps}
       error={{ isError }}
       onFocus={handlePasswordInputFocus}

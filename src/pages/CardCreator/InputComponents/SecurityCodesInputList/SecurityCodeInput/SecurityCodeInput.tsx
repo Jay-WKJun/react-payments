@@ -1,24 +1,35 @@
 import React, { ChangeEvent } from 'react';
 
-import { useCardContextApis, SecurityCodeInputElement } from '@/contexts/CardContext';
+import { useCardContextApis, SecurityCodeState } from '@/contexts/CardContext';
 import { filterNumber } from '@/utils';
 
 import { CardInfoInputElement } from '../../components';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
+import { checkIsSecurityCodeFulfilled, validateSecurityCode } from './securityCodeChecker';
 
 interface SecurityCodeInputProps {
-  securityCode: SecurityCodeInputElement;
+  securityCode: SecurityCodeState;
+  index?: number;
 }
 
-export function SecurityCodeInput({ securityCode }: SecurityCodeInputProps) {
-  const { value, setRef, errorMessage } = securityCode;
+export function SecurityCodeInput({ securityCode, index = 0 }: SecurityCodeInputProps) {
+  const { value, errorMessage } = securityCode;
   const isError = !!errorMessage;
 
   const cardContextApis = useCardContextApis();
 
+  const { focusNext, setRef } = useSequentialFocus();
+
   const changeEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'securityCodes', payload: { value } });
+        const errorMessage = validateSecurityCode(value);
+        const newSecurityCodeState = { value, errorMessage };
+        if (checkIsSecurityCodeFulfilled(newSecurityCodeState)) {
+          focusNext('securityCodes', index);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'securityCodes', index, newState: {} });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +42,8 @@ export function SecurityCodeInput({ securityCode }: SecurityCodeInputProps) {
   };
 
   const handleSecurityCodeInputFocus = () => {
-    cardContextApis?.dispatch({ type: 'securityCodes', payload: { value: value || '' } });
+    const errorMessage = validateSecurityCode(value);
+    cardContextApis?.setOneCardState({ type: 'securityCodes', index, newState: { ...securityCode, errorMessage } });
   };
 
   return (
@@ -39,7 +51,9 @@ export function SecurityCodeInput({ securityCode }: SecurityCodeInputProps) {
       className="input-basic w-25"
       type="password"
       value={value ?? ''}
-      ref={setRef.bind(securityCode)}
+      ref={(el) => {
+        setRef('securityCodes', index, el);
+      }}
       changeEventProps={changeEventProps}
       error={{ isError }}
       onFocus={handleSecurityCodeInputFocus}

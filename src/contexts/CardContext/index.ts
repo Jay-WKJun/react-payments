@@ -1,5 +1,5 @@
 export * from './CardProvider';
 export * from './useCardContext';
-export { CardApiContext, CardContext } from './cardContext';
-export * from './models';
+export { CardContextApi, CardContext } from './cardContext';
+export * from './types';
 export * from './initialCardStore';

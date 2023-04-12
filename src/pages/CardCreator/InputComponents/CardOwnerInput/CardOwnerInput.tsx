@@ -1,12 +1,14 @@
 import React, { ChangeEvent, memo, useMemo } from 'react';
 
 import { useCardContextApis } from '@/contexts/CardContext';
-import { TCardStore } from '@/contexts/CardContext/initialCardStore';
+import { CardState } from '@/contexts/CardContext/initialCardStore';
 
 import { CardInputWrapperPure, CardInfoInputElement } from '../components';
+import { checkIsCardOwnerFulfilled, validateCardOwner } from './cardOwnerChecker';
+import { useSequentialFocus } from '../../hooks';
 
 interface CardOwnerInputProps {
-  cardOwners: TCardStore['cardOwners'];
+  cardOwners: CardState['cardOwners'];
 }
 
 export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardOwnerInputProps) {
@@ -15,10 +17,18 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
 
   const cardContextApis = useCardContextApis();
 
+  const { focusNext, setRef } = useSequentialFocus();
+
   const changeEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'cardOwners', payload: { value } });
+        const errorMessage = validateCardOwner(value);
+        const newCardOwnerState = { value, errorMessage };
+        if (checkIsCardOwnerFulfilled(newCardOwnerState)) {
+          focusNext('cardOwners', 0);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'cardOwners', index: 0, newState: newCardOwnerState });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +41,8 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
   };
 
   const handleCardOwnerInputFocus = () => {
-    cardContextApis?.dispatch({ type: 'cardOwners', payload: { value: cardOwner.value || '' } });
+    const errorMessage = validateCardOwner(cardOwner?.value);
+    cardContextApis?.setOneCardState({ type: 'cardOwners', index: 0, newState: { ...cardOwner, errorMessage } });
   };
 
   const inputHeader = useMemo(
@@ -46,7 +57,9 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
         className="input-basic"
         value={cardOwner?.value ?? ''}
         placeholder="소유주 이름"
-        ref={cardOwner?.setRef.bind(cardOwner)}
+        ref={(el) => {
+          setRef('cardOwners', 0, el);
+        }}
         changeEventProps={changeEventProps}
         error={{ isError }}
         onFocus={handleCardOwnerInputFocus}

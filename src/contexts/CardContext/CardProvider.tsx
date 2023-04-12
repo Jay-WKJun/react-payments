@@ -1,22 +1,37 @@
-import React, { PropsWithChildren, useMemo, useReducer } from 'react';
+import React, { PropsWithChildren, useMemo, useReducer, useState } from 'react';
 
-import { cardStoreReducer } from './cardStoreReducer';
-import { TCardStore, getInitialCardStore } from './initialCardStore';
-import { CardApiContext, CardContext } from './cardContext';
+import { CardState, CardType, getInitialCardStore } from './initialCardStore';
+import { CardContextApi, CardContext, SetOneCardStateProps } from './cardContext';
 
 interface CardProviderProps {
-  value?: TCardStore;
+  cardInit?: CardState;
 }
 
-export function CardProvider({ value, children }: PropsWithChildren<CardProviderProps>) {
-  const [store, dispatch] = useReducer(cardStoreReducer, value || getInitialCardStore());
+export function CardProvider({ cardInit, children }: PropsWithChildren<CardProviderProps>) {
+  const [cardState, setCardState] = useState(cardInit || getInitialCardStore());
 
-  const cardContextApis = useMemo(() => ({ dispatch }), [dispatch]);
+  const cardContextApis = useMemo(() => {
+    function setOneCardState({
+      type, index, newState,
+    }: SetOneCardStateProps) {
+      setCardState((prev) => {
+        const newCardStateList = [...prev[type]];
+        newCardStateList[index] = newState;
+
+        return {
+          ...prev,
+          [type]: newCardStateList,
+        }
+      });
+    }
+
+    return { setOneCardState };
+  }, []);
 
   return (
     // eslint-disable-next-line
-    <CardContext.Provider value={{ ...store }}>
-      <CardApiContext.Provider value={cardContextApis}>{children}</CardApiContext.Provider>
+    <CardContext.Provider value={{ ...cardState }}>
+      <CardContextApi.Provider value={cardContextApis}>{children}</CardContextApi.Provider>
     </CardContext.Provider>
   );
 }

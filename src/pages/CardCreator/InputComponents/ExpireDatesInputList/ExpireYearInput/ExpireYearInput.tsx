@@ -1,25 +1,35 @@
 import React, { ChangeEvent, FocusEvent, memo } from 'react';
 
-import { useCardContextApis, ExpireYearInputElement } from '@/contexts/CardContext';
+import { useCardContextApis, ExpireYearState } from '@/contexts/CardContext';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 import { filterNumber } from '@/utils';
 
 import { CardInfoInputElement } from '../../components';
+import { checkIsExpireYearFulfilled, validateExpireYear } from './expireYearChecker';
 
 interface ExpireYearInputProps {
-  expireDate: ExpireYearInputElement;
+  expireYear: ExpireYearState;
   index: number;
 }
 
-export const ExpireYearInput = memo(function ExpireYearInput({ expireDate, index }: ExpireYearInputProps) {
-  const { value, setRef, errorMessage } = expireDate;
+export const ExpireYearInput = memo(function ExpireYearInput({ expireYear, index }: ExpireYearInputProps) {
+  const { value, errorMessage } = expireYear;
   const isError = !!errorMessage;
 
   const cardContextApis = useCardContextApis();
 
+  const { focusNext, setRef } = useSequentialFocus();
+
   const changeEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'expireDates', payload: { index, value } });
+        const errorMessage = validateExpireYear(value);
+        const newExpireYear = { value, errorMessage };
+        if (checkIsExpireYearFulfilled(newExpireYear)) {
+          focusNext('expireDates', index);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'expireDates', index, newState: newExpireYear });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +44,13 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireDate, index
   const blurEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'expireDates', payload: { index, value } });
+        const errorMessage = validateExpireYear(value);
+        const newExpireYear = { value, errorMessage };
+        if (checkIsExpireYearFulfilled(newExpireYear)) {
+          focusNext('expireDates', index);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'expireDates', index, newState: newExpireYear });
       },
     },
     checkWhetherSetState: (e: FocusEvent<HTMLInputElement>) => {
@@ -48,7 +64,8 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireDate, index
   };
 
   const handleExpireYearInputFocus = () => {
-    cardContextApis?.dispatch({ type: 'expireDates', payload: { index, value: value || '' } });
+    const errorMessage = validateExpireYear(value);
+    cardContextApis?.setOneCardState({ type: 'expireDates', index, newState: { ...expireYear, errorMessage } });
   };
 
   return (
@@ -57,7 +74,9 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireDate, index
       type="text"
       value={value ?? ''}
       placeholder="년도"
-      ref={setRef.bind(expireDate)}
+      ref={(el) => {
+        setRef('expireDates', index, el);
+      }}
       changeEventProps={changeEventProps}
       blurEventProps={blurEventProps}
       error={{ isError }}

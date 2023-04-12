@@ -3,29 +3,38 @@ import { cloneDeep } from 'lodash-es';
 import { createArray } from '@/utils';
 
 import {
-  CardCompanyInputElement,
-  CardNicknameInputElement,
-  CardNumberInputElement,
-  CardOwnerInputElement,
-  CardPasswordInputElement,
-  ExpireMonthInputElement,
-  ExpireYearInputElement,
-  SecurityCodeInputElement,
-} from './models';
+  CardCompanyState,
+  CardNicknameState,
+  CardNumberState,
+  CardOwnerState,
+  CardPasswordState,
+  ExpireMonthState,
+  ExpireYearState,
+  SecurityCodeState,
+} from './types';
 
-const initialCardStore = {
-  cardNicknames: createArray(1, () => new CardNicknameInputElement({})),
-  cardNumbers: createArray(4, () => new CardNumberInputElement({})),
-  expireDates: [new ExpireMonthInputElement({}), new ExpireYearInputElement({})],
-  cardOwners: createArray(1, () => new CardOwnerInputElement({})),
-  securityCodes: createArray(1, () => new SecurityCodeInputElement({})),
-  passwords: createArray(2, () => new CardPasswordInputElement({})),
-  cardCompanies: createArray(1, () => new CardCompanyInputElement({})),
+export type CardState = {
+  cardNicknames: CardNicknameState[];
+  cardNumbers: CardNumberState[];
+  expireDates: [ExpireMonthState, ExpireYearState];
+  cardOwners: CardOwnerState[];
+  securityCodes: SecurityCodeState[];
+  passwords: CardPasswordState[];
+  cardCompanies: CardCompanyState[];
+}
+
+const initialCardState: CardState = {
+  cardNicknames: [{}],
+  cardNumbers: [{}, {}, {}, {}],
+  expireDates: [{}, {}],
+  cardOwners: [{}],
+  securityCodes: [{}],
+  passwords: [{}, {}],
+  cardCompanies: [{}],
 };
 
-export type TCardStore = typeof initialCardStore;
-export type TCardStoreKeys = keyof TCardStore;
+export type CardType = keyof CardState;
 
 export function getInitialCardStore() {
-  return cloneDeep(initialCardStore);
+  return cloneDeep(initialCardState);
 }

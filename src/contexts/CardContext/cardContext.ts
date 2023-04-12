@@ -1,14 +1,14 @@
 import { createContext } from 'react';
 
-import type { TCardStore } from './initialCardStore';
+import type { CardState, CardType } from './initialCardStore';
 
-import { cardStoreReducer } from './cardStoreReducer';
-import { DispatchContext, ReducerReturnType } from '../types';
+export interface SetOneCardStateProps {
+  type: CardType, index: number, newState: CardState[CardType][number];
+}
 
-type TCardReducer = ReducerReturnType<typeof cardStoreReducer>;
-type TDispatch = TCardReducer[1];
-type TCardCompanyStoreContext = TCardStore | null;
-type TApiContext = DispatchContext<TDispatch>;
+type CardContextApiType = {
+  setOneCardState: (prop: SetOneCardStateProps) => void;
+}
 
-export const CardContext = createContext<TCardCompanyStoreContext>(null);
-export const CardApiContext = createContext<TApiContext>(null);
+export const CardContext = createContext<CardState | null>(null);
+export const CardContextApi = createContext<CardContextApiType | null>(null);

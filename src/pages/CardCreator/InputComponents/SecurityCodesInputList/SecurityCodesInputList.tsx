@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { TCardStore } from '@/contexts/CardContext/initialCardStore';
+import { CardState } from '@/contexts/CardContext/initialCardStore';
 
 import { CardInputWrapperPure } from '../components';
 import { SecurityCodeInput } from './SecurityCodeInput';
@@ -8,7 +8,7 @@ import { SecurityCodeTooltip } from './SecurityCodeTooltip';
 import { StyledSecurityCodesInputList } from './SecurityCodesInputList.styled';
 
 interface SecurityCodesInputListProps {
-  securityCodes: TCardStore['securityCodes'];
+  securityCodes: CardState['securityCodes'];
 }
 
 export const SecurityCodesInputList = memo(function SecurityCodesInputList({

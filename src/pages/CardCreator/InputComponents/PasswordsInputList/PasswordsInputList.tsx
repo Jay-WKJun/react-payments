@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 
-import type { TCardStore } from '@/contexts/CardContext/initialCardStore';
+import type { CardState } from '@/contexts/CardContext/initialCardStore';
 
 import { CardInputWrapperPure } from '../components';
 import { PasswordInput } from './PasswordInput';
 
 interface PasswordsInputListProps {
-  passwords: TCardStore['passwords'];
+  passwords: CardState['passwords'];
 }
 
 export const PasswordsInputList = memo(function PasswordsInputList({ passwords }: PasswordsInputListProps) {

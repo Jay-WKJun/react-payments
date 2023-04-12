@@ -1,7 +1,6 @@
 import type { MouseEvent } from 'react';
 
 import { useCardContext } from '@/contexts/CardContext';
-import { findInvalidStoreAndFocus } from '@/utils/card';
 
 export function useCardSubmitEvent() {
   const cardStore = useCardContext();
@@ -11,17 +10,5 @@ export function useCardSubmitEvent() {
     if (!cardStore) return;
 
     const { cardCompanies, cardNumbers, expireDates, cardOwners, passwords, securityCodes } = cardStore;
-    const invalidState = findInvalidStoreAndFocus([
-      cardNumbers,
-      expireDates,
-      cardOwners,
-      passwords,
-      securityCodes,
-      cardCompanies,
-    ]);
-    if (invalidState) {
-      e.preventDefault();
-      invalidState.ref?.focus();
-    }
   };
 }

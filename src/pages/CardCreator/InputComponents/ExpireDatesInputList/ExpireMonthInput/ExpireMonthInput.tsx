@@ -1,31 +1,41 @@
 import React, { ChangeEvent, FocusEvent, memo } from 'react';
 
 import { ConditionalComponentWrapper } from '@/components';
-import { useCardContextApis, ExpireMonthInputElement } from '@/contexts/CardContext';
+import { useCardContextApis, ExpireMonthState } from '@/contexts/CardContext';
 import { filterNumber, isNil } from '@/utils';
 
 import { InputDivider, CardInfoInputElement } from '../../components';
+import { checkIsExpireMonthFulfilled, validateExpireMonth } from './expireMonthChecker';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 
 interface ExpireMonthInputProps {
-  expireDate: ExpireMonthInputElement;
+  expireMonth: ExpireMonthState;
   index: number;
   needDividerRender: boolean;
 }
 
 export const ExpireMonthInput = memo(function ExpireMonthInput({
-  expireDate,
+  expireMonth,
   index,
   needDividerRender,
 }: ExpireMonthInputProps) {
-  const { value, setRef, errorMessage } = expireDate;
+  const { value, errorMessage } = expireMonth;
   const isError = !!errorMessage;
 
   const cardContextApis = useCardContextApis();
 
+  const { focusNext, setRef } = useSequentialFocus();
+
   const changeEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'expireDates', payload: { index, value } });
+        const errorMessage = validateExpireMonth(value);
+        const newExpireMonthState = { value, errorMessage };
+        if (checkIsExpireMonthFulfilled(newExpireMonthState)) {
+          focusNext('expireDates', index);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'expireDates', index, newState: newExpireMonthState });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +56,13 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
   const blurEventProps = {
     props: {
       setState: (value: string) => {
-        cardContextApis?.dispatch({ type: 'expireDates', payload: { index, value } });
+        const errorMessage = validateExpireMonth(value);
+        const newExpireMonthState = { value, errorMessage };
+        if (checkIsExpireMonthFulfilled(newExpireMonthState)) {
+          focusNext('expireDates', index);
+        }
+
+        cardContextApis?.setOneCardState({ type: 'expireDates', index, newState: newExpireMonthState });
       },
     },
     checkWhetherSetState: (e: FocusEvent<HTMLInputElement>) => {
@@ -60,7 +76,8 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
   };
 
   const handleExpireMonthInputFocus = () => {
-    cardContextApis?.dispatch({ type: 'expireDates', payload: { index, value: value || '' } });
+    const errorMessage = validateExpireMonth(value);
+    cardContextApis?.setOneCardState({ type: 'expireDates', index, newState: { ...expireMonth, errorMessage } });
   };
 
   return (
@@ -70,7 +87,9 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
         type="text"
         value={value ?? ''}
         placeholder="월"
-        ref={setRef.bind(expireDate)}
+        ref={(el) => {
+          setRef('expireDates', index, el);
+        }}
         changeEventProps={changeEventProps}
         blurEventProps={blurEventProps}
         error={{ isError }}

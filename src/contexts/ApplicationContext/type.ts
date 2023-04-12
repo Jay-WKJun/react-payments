@@ -1,24 +1,24 @@
 import { Service } from '@/hooks';
 import type {
-  TCardCompany,
-  TCardNickname,
-  TCardNumber,
-  TCardOwner,
-  TCardPassword,
-  TExpireMonth,
-  TExpireYear,
-  TSecurityCode,
+  CardCompany,
+  CardNickname,
+  CardNumber,
+  CardOwner,
+  CardPassword,
+  ExpireMonth,
+  ExpireYear,
+  SecurityCode,
 } from '@/types';
 
 type TCardState<T> = { value: T };
 export type TCard = {
-  cardCompanies: [TCardState<TCardCompany>];
-  cardNicknames: [TCardState<TCardNickname>];
-  cardNumbers: [TCardState<TCardNumber>, TCardState<TCardNumber>, TCardState<TCardNumber>, TCardState<TCardNumber>];
-  expireDates: [TCardState<TExpireMonth>, TCardState<TExpireYear>];
-  cardOwners: [TCardState<TCardOwner>];
-  securityCodes: [TCardState<TSecurityCode>];
-  passwords: [TCardState<TCardPassword>, TCardState<TCardPassword>];
+  cardCompanies: [TCardState<CardCompany>];
+  cardNicknames: [TCardState<CardNickname>];
+  cardNumbers: [TCardState<CardNumber>, TCardState<CardNumber>, TCardState<CardNumber>, TCardState<CardNumber>];
+  expireDates: [TCardState<ExpireMonth>, TCardState<ExpireYear>];
+  cardOwners: [TCardState<CardOwner>];
+  securityCodes: [TCardState<SecurityCode>];
+  passwords: [TCardState<CardPassword>, TCardState<CardPassword>];
 };
 export type TCardList = { [cardId: string]: TCard };
 

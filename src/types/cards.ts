@@ -1,14 +1,14 @@
 import type { Themes } from '@/theme';
 
-export type TCardCompany = {
+export type CardCompany = {
   name: string;
   theme: Themes;
 };
 
-export type TCardNickname = string;
-export type TCardNumber = string;
-export type TCardOwner = string;
-export type TCardPassword = string;
-export type TExpireMonth = string;
-export type TExpireYear = string;
-export type TSecurityCode = string;
+export type CardNickname = string;
+export type CardNumber = string;
+export type CardOwner = string;
+export type CardPassword = string;
+export type ExpireMonth = string;
+export type ExpireYear = string;
+export type SecurityCode = string;

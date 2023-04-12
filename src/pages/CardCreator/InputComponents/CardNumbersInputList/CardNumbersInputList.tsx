@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import type { TCardStore } from '@/contexts/CardContext/initialCardStore';
+import type { CardState } from '@/contexts/CardContext/initialCardStore';
 import { checkIsArrayLast } from '@/utils';
 
 import { CardInputWrapperPure } from '../components';
@@ -11,7 +11,7 @@ export interface CardNumbersInputListRefs {
 }
 
 interface CardNumbersInputListProps {
-  cardNumbers?: TCardStore['cardNumbers'];
+  cardNumbers?: CardState['cardNumbers'];
 }
 
 export const CardNumbersInputList = memo(function CardNumbersInputList({ cardNumbers }: CardNumbersInputListProps) {

@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 import { Card, ThemeSetter } from '@/components';
 import { useCardContextApis, useCardContext } from '@/contexts/CardContext';
 import { routes } from '@/router';
-import { TCardCompany } from '@/types';
+import { CardCompany } from '@/types';
 
 import {
   useCardCompanySelectModal,
-  useSequentialAutoFocus,
   useAutoCompanyChecker,
-  useInvalidFinderOnMount,
 } from './hooks';
 import {
   CardNumbersInputList,
@@ -28,17 +26,6 @@ export function CardCreator() {
 
   const { CardCompanySelectModal, showModal, hideModal } = useCardCompanySelectModal();
 
-  const cardStateList = cardContext && [
-    cardContext.cardNumbers,
-    cardContext.expireDates,
-    cardContext.cardOwners,
-    cardContext.securityCodes,
-    cardContext.passwords,
-    cardContext.cardCompanies,
-  ];
-  useInvalidFinderOnMount(cardStateList);
-  useSequentialAutoFocus(cardStateList);
-
   useAutoCompanyChecker(cardContext?.cardNumbers[0].value, cardContext?.cardNumbers[1].value);
 
   const handleCardClick = useCallback(
@@ -50,8 +37,8 @@ export function CardCreator() {
   );
 
   const handleCardCompanySelectModalClick = useCallback(
-    (cardCompany: TCardCompany) => {
-      cardContextApis?.dispatch({ type: 'cardCompanies', payload: { value: cardCompany } });
+    (cardCompany: CardCompany) => {
+      cardContextApis?.setOneCardState({ type: 'cardCompanies', index: 0, newState: { value: cardCompany } });
       hideModal();
     },
     [hideModal, cardContextApis]
@@ -59,7 +46,7 @@ export function CardCreator() {
 
   if (!cardContext) return null;
   const { cardCompanies, cardNumbers, cardOwners, expireDates, passwords, securityCodes } = cardContext;
-
+console.log(cardNumbers)
   return (
     <ThemeSetter className={cardCreatorContainerStyle()} theme={cardCompanies[0].value?.theme}>
       <h2 className="page-title">
