@@ -18,7 +18,7 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireYear, index
 
   const cardContextApis = useCardContextApis();
 
-  const { focusNext, setRef } = useSequentialFocus();
+  const { focusNext, setElement } = useSequentialFocus();
 
   const changeEventProps = {
     props: {
@@ -75,7 +75,7 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireYear, index
       value={value ?? ''}
       placeholder="년도"
       ref={(el) => {
-        setRef('expireDates', index, el);
+        setElement('expireDates', index, el);
       }}
       changeEventProps={changeEventProps}
       blurEventProps={blurEventProps}

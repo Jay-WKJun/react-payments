@@ -28,7 +28,7 @@ export const CardNumberInput = memo(function CardNumberInput({
 
   const cardContextApis = useCardContextApis();
 
-  const { focusNext, setRef } = useSequentialFocus();
+  const { focusNext, setElement } = useSequentialFocus();
 
   const changeEventProps = {
     props: {
@@ -63,7 +63,7 @@ console.log('drop', value)
         type={type}
         value={value ?? ''}
         ref={(el) => {
-          if (el) setRef('cardNumbers', index, el);
+          if (el) setElement('cardNumbers', index, el);
         }}
         className="input-basic"
         changeEventProps={changeEventProps}

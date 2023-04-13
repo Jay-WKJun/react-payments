@@ -18,7 +18,7 @@ export function SecurityCodeInput({ securityCode, index = 0 }: SecurityCodeInput
 
   const cardContextApis = useCardContextApis();
 
-  const { focusNext, setRef } = useSequentialFocus();
+  const { focusNext, setElement } = useSequentialFocus();
 
   const changeEventProps = {
     props: {
@@ -52,7 +52,7 @@ export function SecurityCodeInput({ securityCode, index = 0 }: SecurityCodeInput
       type="password"
       value={value ?? ''}
       ref={(el) => {
-        setRef('securityCodes', index, el);
+        setElement('securityCodes', index, el);
       }}
       changeEventProps={changeEventProps}
       error={{ isError }}

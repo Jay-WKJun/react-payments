@@ -18,7 +18,7 @@ export function PasswordInput({ password, index }: PasswordInputProps) {
 
   const cardContextApis = useCardContextApis();
 
-  const { focusNext, setRef } = useSequentialFocus();
+  const { focusNext, setElement } = useSequentialFocus();
 
   const changeEventProps = {
     props: {
@@ -52,7 +52,7 @@ export function PasswordInput({ password, index }: PasswordInputProps) {
       className="input-basic w-15 mr-10"
       value={value ?? ''}
       ref={(el) => {
-        setRef('passwords', index, el);
+        setElement('passwords', index, el);
       }}
       changeEventProps={changeEventProps}
       error={{ isError }}

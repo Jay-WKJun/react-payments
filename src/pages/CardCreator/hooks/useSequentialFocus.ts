@@ -15,31 +15,35 @@ const formRefIndex: Record<AutoFocusFormType, number> = {
   passwords: 4,
 };
 
-const sequentialRefStore: HTMLElement[][] = [];
+const elementStore: HTMLElement[][] = [];
 
 export function useSequentialFocus() {
-  const setRef = useCallback((type: AutoFocusFormType, index: number, ref?: HTMLElement | null) => {
-    if (!ref) return;
+  const setElement = useCallback((type: AutoFocusFormType, index: number, element?: HTMLElement | null) => {
+    if (!element) return;
 
-    const typeRefList = sequentialRefStore[formRefIndex[type]];
-    if (!typeRefList) {
-      sequentialRefStore[formRefIndex[type]] = [];
+    const elementListIndex = formRefIndex[type];
+    const inputElementList = elementStore[elementListIndex];
+
+    if (!inputElementList) {
+      elementStore[elementListIndex] = [];
     }
-    sequentialRefStore[formRefIndex[type]][index] = ref;
+    elementStore[elementListIndex][index] = element;
   }, []);
 
   const focusNext = useCallback((type: AutoFocusFormType, index: number) => {
-    const typeRefList = sequentialRefStore[formRefIndex[type]];
-    if (index >= typeRefList.length - 2) {
-      sequentialRefStore[formRefIndex[type] + 1][0].focus();
+    const elementListIndex = formRefIndex[type];
+    const inputElementList = elementStore[elementListIndex];
+
+    if (index >= inputElementList.length - 1) {
+      elementStore[elementListIndex + 1][0].focus();
       return;
     }
 
-    typeRefList[index + 1].focus();
+    inputElementList[index + 1].focus();
   }, []);
 
   return {
     focusNext,
-    setRef,
+    setElement,
   };
 }

@@ -24,7 +24,7 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
 
   const cardContextApis = useCardContextApis();
 
-  const { focusNext, setRef } = useSequentialFocus();
+  const { focusNext, setElement } = useSequentialFocus();
 
   const changeEventProps = {
     props: {
@@ -88,7 +88,7 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
         value={value ?? ''}
         placeholder="월"
         ref={(el) => {
-          setRef('expireDates', index, el);
+          setElement('expireDates', index, el);
         }}
         changeEventProps={changeEventProps}
         blurEventProps={blurEventProps}

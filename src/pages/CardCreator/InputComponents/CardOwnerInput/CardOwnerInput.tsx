@@ -17,7 +17,7 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
 
   const cardContextApis = useCardContextApis();
 
-  const { focusNext, setRef } = useSequentialFocus();
+  const { focusNext, setElement } = useSequentialFocus();
 
   const changeEventProps = {
     props: {
@@ -58,7 +58,7 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
         value={cardOwner?.value ?? ''}
         placeholder="소유주 이름"
         ref={(el) => {
-          setRef('cardOwners', 0, el);
+          setElement('cardOwners', 0, el);
         }}
         changeEventProps={changeEventProps}
         error={{ isError }}
