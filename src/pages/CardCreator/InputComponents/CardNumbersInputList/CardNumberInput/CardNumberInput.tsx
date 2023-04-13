@@ -1,13 +1,16 @@
 import React, { ChangeEvent, HTMLInputTypeAttribute, memo } from 'react';
 
 import { ConditionalComponentWrapper } from '@/components';
-import { CardNumberState, useCardContextApis } from '@/contexts/CardContext';
+import {
+  CardNumberState,
+  useCardContextApis,
+  checkIsCardNumberFulfilled,
+  validateCardNumber,
+} from '@/contexts/CardContext';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 import { filterNumber } from '@/utils';
 
 import { InputDivider, CardInfoInputElement } from '../../components';
-import { checkIsValueFulfilled, validateCardNumber } from './cardNumberChecker';
-import { useSequentialFocus } from '@/pages/CardCreator/hooks';
-import { log } from 'console';
 
 interface CardNumberProps {
   type?: HTMLInputTypeAttribute;
@@ -22,7 +25,6 @@ export const CardNumberInput = memo(function CardNumberInput({
   index,
   needDividerRender,
 }: CardNumberProps) {
-  console.log('droped State:', cardNumber)
   const { value, errorMessage } = cardNumber;
   const isError = !!errorMessage;
 
@@ -35,10 +37,9 @@ export const CardNumberInput = memo(function CardNumberInput({
       setState: (value: string) => {
         const errorMessage = validateCardNumber(value);
 
-        if (checkIsValueFulfilled({ value, errorMessage })) {
+        if (checkIsCardNumberFulfilled({ value, errorMessage })) {
           focusNext('cardNumbers', index);
         }
-        console.log(value)
         cardContextApis?.setOneCardState({ type: 'cardNumbers', index, newState: { value, errorMessage } });
       },
     },
@@ -47,7 +48,6 @@ export const CardNumberInput = memo(function CardNumberInput({
       return !filteredNumber || filteredNumber.length <= 4;
     },
     getNewValue: (e: ChangeEvent<HTMLInputElement>) => {
-      console.log(e.currentTarget.value)
       return filterNumber(e.currentTarget.value);
     },
   };
@@ -56,7 +56,7 @@ export const CardNumberInput = memo(function CardNumberInput({
     const errorMessage = validateCardNumber(value);
     cardContextApis?.setOneCardState({ type: 'cardNumbers', index, newState: { ...cardNumber, errorMessage } });
   };
-console.log('drop', value)
+
   return (
     <>
       <CardInfoInputElement

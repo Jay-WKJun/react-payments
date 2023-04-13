@@ -1,10 +1,8 @@
 import React, { ChangeEvent, memo, useMemo } from 'react';
 
-import { useCardContextApis } from '@/contexts/CardContext';
-import { CardState } from '@/contexts/CardContext/initialCardStore';
+import { useCardContextApis, checkIsCardOwnerFulfilled, validateCardOwner, CardState } from '@/contexts/CardContext';
 
 import { CardInputWrapperPure, CardInfoInputElement } from '../components';
-import { checkIsCardOwnerFulfilled, validateCardOwner } from './cardOwnerChecker';
 import { useSequentialFocus } from '../../hooks';
 
 interface CardOwnerInputProps {

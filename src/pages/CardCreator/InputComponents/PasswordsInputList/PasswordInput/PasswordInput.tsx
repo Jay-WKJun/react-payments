@@ -1,11 +1,15 @@
 import React, { ChangeEvent } from 'react';
 
-import { CardPasswordState, useCardContextApis } from '@/contexts/CardContext';
+import {
+  CardPasswordState,
+  useCardContextApis,
+  checkIsPasswordFulfilled,
+  validateCardPassword,
+} from '@/contexts/CardContext';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 import { filterNumber } from '@/utils';
 
 import { CardInfoInputElement } from '../../components';
-import { checkIsPasswordFulfilled, validateCardPassword } from './cardPasswordChecker';
-import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 
 interface PasswordInputProps {
   password: CardPasswordState;

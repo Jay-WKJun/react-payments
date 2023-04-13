@@ -1,11 +1,15 @@
 import React, { ChangeEvent } from 'react';
 
-import { useCardContextApis, SecurityCodeState } from '@/contexts/CardContext';
+import {
+  useCardContextApis,
+  SecurityCodeState,
+  checkIsSecurityCodeFulfilled,
+  validateSecurityCode,
+} from '@/contexts/CardContext';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 import { filterNumber } from '@/utils';
 
 import { CardInfoInputElement } from '../../components';
-import { useSequentialFocus } from '@/pages/CardCreator/hooks';
-import { checkIsSecurityCodeFulfilled, validateSecurityCode } from './securityCodeChecker';
 
 interface SecurityCodeInputProps {
   securityCode: SecurityCodeState;

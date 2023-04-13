@@ -9,7 +9,7 @@ export function validateCardNumber(cardNumber?: CardNumber) {
   }
 }
 
-export function checkIsValueFulfilled(cardNumberState: CardNumberState) {
+export function checkIsCardNumberFulfilled(cardNumberState: CardNumberState) {
   const { errorMessage, value } = cardNumberState;
   return !errorMessage && value?.length === 4;
 }

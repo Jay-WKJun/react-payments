@@ -6,10 +6,7 @@ import { useCardContextApis, useCardContext } from '@/contexts/CardContext';
 import { routes } from '@/router';
 import { CardCompany } from '@/types';
 
-import {
-  useCardCompanySelectModal,
-  useAutoCompanyChecker,
-} from './hooks';
+import { useCardCompanySelectModal, useAutoCompanyChecker } from './hooks';
 import {
   CardNumbersInputList,
   ExpireDatesInputList,
@@ -24,9 +21,9 @@ export function CardCreator() {
   const cardContext = useCardContext();
   const cardContextApis = useCardContextApis();
 
-  const { CardCompanySelectModal, showModal, hideModal } = useCardCompanySelectModal();
-
   useAutoCompanyChecker(cardContext?.cardNumbers[0].value, cardContext?.cardNumbers[1].value);
+
+  const { CardCompanySelectModal, showModal, hideModal } = useCardCompanySelectModal();
 
   const handleCardClick = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -45,8 +42,9 @@ export function CardCreator() {
   );
 
   if (!cardContext) return null;
+
   const { cardCompanies, cardNumbers, cardOwners, expireDates, passwords, securityCodes } = cardContext;
-console.log(cardNumbers)
+
   return (
     <ThemeSetter className={cardCreatorContainerStyle()} theme={cardCompanies[0].value?.theme}>
       <h2 className="page-title">

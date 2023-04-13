@@ -1,7 +1,5 @@
 import { cloneDeep } from 'lodash-es';
 
-import { createArray } from '@/utils';
-
 import {
   CardCompanyState,
   CardNicknameState,
@@ -21,7 +19,7 @@ export type CardState = {
   securityCodes: SecurityCodeState[];
   passwords: CardPasswordState[];
   cardCompanies: CardCompanyState[];
-}
+};
 
 const initialCardState: CardState = {
   cardNicknames: [{}],

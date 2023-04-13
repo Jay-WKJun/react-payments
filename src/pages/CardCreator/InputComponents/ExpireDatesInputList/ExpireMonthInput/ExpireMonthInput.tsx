@@ -1,12 +1,16 @@
 import React, { ChangeEvent, FocusEvent, memo } from 'react';
 
 import { ConditionalComponentWrapper } from '@/components';
-import { useCardContextApis, ExpireMonthState } from '@/contexts/CardContext';
+import {
+  useCardContextApis,
+  ExpireMonthState,
+  checkIsExpireMonthFulfilled,
+  validateExpireMonth,
+} from '@/contexts/CardContext';
+import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 import { filterNumber, isNil } from '@/utils';
 
 import { InputDivider, CardInfoInputElement } from '../../components';
-import { checkIsExpireMonthFulfilled, validateExpireMonth } from './expireMonthChecker';
-import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 
 interface ExpireMonthInputProps {
   expireMonth: ExpireMonthState;

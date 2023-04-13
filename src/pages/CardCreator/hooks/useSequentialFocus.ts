@@ -15,12 +15,10 @@ const formRefIndex: Record<AutoFocusFormType, number> = {
   passwords: 4,
 };
 
-const elementStore: HTMLElement[][] = [];
+const elementStore: (HTMLElement | null)[][] = [];
 
 export function useSequentialFocus() {
-  const setElement = useCallback((type: AutoFocusFormType, index: number, element?: HTMLElement | null) => {
-    if (!element) return;
-
+  const setElement = useCallback((type: AutoFocusFormType, index: number, element: HTMLElement | null) => {
     const elementListIndex = formRefIndex[type];
     const inputElementList = elementStore[elementListIndex];
 
@@ -35,11 +33,11 @@ export function useSequentialFocus() {
     const inputElementList = elementStore[elementListIndex];
 
     if (index >= inputElementList.length - 1) {
-      elementStore[elementListIndex + 1][0].focus();
+      elementStore[elementListIndex + 1][0]?.focus();
       return;
     }
 
-    inputElementList[index + 1].focus();
+    inputElementList[index + 1]?.focus();
   }, []);
 
   return {
