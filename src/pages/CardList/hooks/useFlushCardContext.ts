@@ -6,6 +6,6 @@ export function useFlushCardContextStore() {
   const cardContextApis = useCardContextApis();
 
   useEffect(() => {
-    cardContextApis?.dispatch({});
+    cardContextApis?.initCardState();
   }, [cardContextApis]);
 }
