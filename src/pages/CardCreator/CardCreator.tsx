@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Card, ThemeSetter } from '@/components';
 import { useCardContextApis, useCardContext } from '@/contexts/CardContext';
+import { useCardStatesValidator } from '@/hooks';
 import { routes } from '@/router';
 import { CardCompany } from '@/types';
 
@@ -41,6 +42,27 @@ export function CardCreator() {
     [hideModal, cardContextApis]
   );
 
+  const validateCardStates = useCardStatesValidator();
+
+  const handleSubmit = useCallback(
+    (e: MouseEvent<HTMLAnchorElement>) => {
+      if (!cardContext) return;
+
+      const { cardCompanies, cardNumbers, expireDates, cardOwners, passwords, securityCodes } = cardContext;
+      const isValidate = validateCardStates([
+        ['cardCompanies', cardCompanies],
+        ['cardNumbers', cardNumbers],
+        ['expireDates', expireDates],
+        ['cardOwners', cardOwners],
+        ['securityCodes', securityCodes],
+        ['passwords', passwords],
+      ]);
+
+      if (!isValidate) e.preventDefault();
+    },
+    [cardContext, validateCardStates]
+  );
+
   if (!cardContext) return null;
 
   const { cardCompanies, cardNumbers, cardOwners, expireDates, passwords, securityCodes } = cardContext;
@@ -70,7 +92,7 @@ export function CardCreator() {
       <SecurityCodesInputList securityCodes={securityCodes} />
       <PasswordsInputList passwords={passwords} />
 
-      <SubmitButton />
+      <SubmitButton onSubmit={handleSubmit} />
 
       <CardCompanySelectModal onCardCompanyClick={handleCardCompanySelectModalClick} />
     </ThemeSetter>

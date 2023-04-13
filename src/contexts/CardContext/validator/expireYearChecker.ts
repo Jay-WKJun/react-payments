@@ -1,10 +1,8 @@
 import type { ExpireYearState } from '@/contexts/CardContext';
 import type { ExpireYear } from '@/types';
-import { isNil, convertStringToNumber, getYearFormatYY } from '@/utils';
+import { convertStringToNumber, getYearFormatYY } from '@/utils';
 
 export function validateExpireYear(expireYear?: ExpireYear) {
-  if (isNil(expireYear)) return;
-
   if (!expireYear) {
     return '만료 연도를 입력해주세요.';
   }
