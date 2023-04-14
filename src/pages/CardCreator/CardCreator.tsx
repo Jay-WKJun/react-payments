@@ -75,8 +75,8 @@ export function CardCreator() {
 
       <Card
         cardCompany={cardCompany.value}
-        cardExpireDate={expireDates?.map((expireDate) => expireDate.value)}
-        cardNumbers={cardNumbers}
+        cardExpireDate={expireDates?.map((expireDateState) => expireDateState.value)}
+        cardNumbers={cardNumbers.map((cardNumberState) => cardNumberState.value)}
         cardOwnerName={cardOwner?.value}
         additionalBottomElement={
           !cardCompany.errorMessage ? <StyledErrorMessage>{cardCompany.errorMessage}</StyledErrorMessage> : undefined

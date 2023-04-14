@@ -9,16 +9,16 @@ interface CardNumbersProps {
 export function CardNumbers({ cardNumbers }: CardNumbersProps) {
   return (
     <div className="card-bottom__number">
-      {cardNumbers?.map((cardNumber, i) => (
-        <CardNumber key={`card-number-${i}-${cardNumber.value}`} {...cardNumber} />
-      ))}
+      {cardNumbers?.map((cardNumber, i) => {
+        const isHide = i >= 2;
+        return <CardNumber key={`card-number-${i}-${cardNumber}`} hide={isHide} value={cardNumber} />;
+      })}
     </div>
   );
 }
 
-function CardNumber({ type, value }: TCardNumberProp) {
-  const isHide = type === 'password';
-  return <span className="card-number-wrapper card-number-spacing">{value && makeCardNumber(value, isHide)}</span>;
+function CardNumber({ hide, value }: { hide: boolean; value: TCardNumberProp }) {
+  return <span className="card-number-wrapper card-number-spacing">{value && makeCardNumber(value, hide)}</span>;
 }
 
 function makeCardNumber(value: string, isHide: boolean) {

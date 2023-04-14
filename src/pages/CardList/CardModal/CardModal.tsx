@@ -2,7 +2,7 @@ import React, { MouseEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Card } from '@/components';
-import { TCard, useApplicationContext } from '@/contexts/ApplicationContext';
+import { Card as CardModel, useApplicationContext } from '@/contexts/ApplicationContext';
 import { useModal } from '@/hooks';
 import { routes } from '@/router';
 
@@ -12,8 +12,9 @@ import {
   StyledConfirmButton,
   StyledCardModalButton,
 } from './CardModal.styled';
+import { convertCardToCardState, useCardContextApis } from '@/contexts';
 
-export type TCardModalDTO = { id: string; card: TCard };
+export type TCardModalDTO = { id: string; card: CardModel };
 
 interface CardModalProps {
   cardInfo?: TCardModalDTO | null;
@@ -37,26 +38,31 @@ export function CardModal({ cardInfo, onModalHide }: CardModalProps) {
 
     if (!cardInfo) return;
 
-    appContext?.onCardConfirmClick(cardInfo.card);
+    const { card, id } = cardInfo;
+    appContext?.onCardConfirm(card, id);
   };
 
   const handleNicknameChangeButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (!cardInfo) return;
+
     e.stopPropagation();
+
     navigator(routes.createCardNickname(cardInfo?.id));
   };
 
   if (!cardInfo) return null;
+
   const { card } = cardInfo;
 
   return (
     <Modal onBackgroundClick={onModalHide}>
       <StyledCardModalWrapper>
         <Card
-          cardCompany={card?.cardCompanies[0].value}
-          cardExpireDate={card?.expireDates?.map((expireDate: { value: string }) => expireDate.value)}
+          cardCompany={card?.cardCompany}
+          cardExpireDate={card?.expireDates}
           cardNumbers={card?.cardNumbers}
-          cardOwnerName={card?.cardOwners?.[0]?.value}
-          cardNickname={card?.cardNicknames[0]?.value}
+          cardOwnerName={card?.cardOwner}
+          cardNickname={card?.cardNickname}
         />
         <StyledControllersContainer>
           <StyledConfirmButton onClick={handleConfirmButtonClick}>선택</StyledConfirmButton>

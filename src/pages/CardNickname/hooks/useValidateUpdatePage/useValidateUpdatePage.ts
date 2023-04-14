@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { useFetchCardList } from '@/hooks/useFetchCardList';
+import { convertCardToCardState, useCardContextApis, useApplicationContext } from '@/contexts';
 import { routes } from '@/router';
-import { useCardContextApis } from '@/contexts/CardContext';
 
 export function useValidateUpdatePage() {
   const { cardId } = useParams();
   const navigate = useNavigate();
+  const appContext = useApplicationContext();
   const cardContextApis = useCardContextApis();
-
-  const { cardList } = useFetchCardList();
 
   useEffect(
     function checkIfCorrectPageAccess() {
+      const cardList = appContext?.cardList;
+
       if (!cardId || !cardList) return;
 
       const card = cardList[cardId];
@@ -23,8 +23,9 @@ export function useValidateUpdatePage() {
         return;
       }
 
-      cardContextApis?.setCardState(card);
+      const cardState = convertCardToCardState(card);
+      cardContextApis?.setCardState(cardState);
     },
-    [cardId, cardList, navigate, cardContextApis]
+    [cardId, navigate, cardContextApis, appContext]
   );
 }

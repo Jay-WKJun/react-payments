@@ -1,7 +1,7 @@
 import React, { MouseEvent, useCallback, useMemo, useState } from 'react';
 
 import { Card, CloseIcon } from '@/components';
-import { useFetchCardList } from '@/hooks';
+import { useApplicationContext, Card as CardModel } from '@/contexts';
 
 import { useFlushCardContextStore } from './hooks';
 import { EmptyCard } from './EmptyCard';
@@ -13,7 +13,8 @@ export function CardList() {
 
   const [selectedCard, setSelectedCard] = useState<TCardModalDTO | null>();
 
-  const { cardList, deleteCard } = useFetchCardList();
+  const appContext = useApplicationContext();
+  const cardList = appContext?.cardList;
 
   const sortCardListToDescendingOrderOfKey = useMemo(
     () => cardList && Object.entries(cardList).sort(sortDescendingOrderByKeys),
@@ -29,27 +30,29 @@ export function CardList() {
   );
 
   const createCardDeleteButtonClickHandler = useCallback(
-    (key: string) => (e: MouseEvent<HTMLDivElement>) => {
+    (card: CardModel, cardId: string) => (e: MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
-      deleteCard(key);
+      appContext?.onCardDelete(card, cardId);
     },
-    [deleteCard]
+    [appContext]
   );
+
+  if (!appContext) return null;
 
   return (
     <StyledCardListContainer>
       <EmptyCard />
-      {sortCardListToDescendingOrderOfKey?.map(([key, val]) => (
+      {sortCardListToDescendingOrderOfKey?.map(([cardId, card]) => (
         <Card
-          key={key}
-          cardCompany={val?.cardCompanies[0]?.value}
-          cardExpireDate={val?.expireDates?.map((expireDate: { value: string }) => expireDate.value)}
-          cardNumbers={val?.cardNumbers}
-          cardOwnerName={val?.cardOwners?.[0]?.value}
-          cardNickname={val?.cardNicknames[0]?.value}
-          onCardClick={createCardClickHandler(key)}
+          key={cardId}
+          cardCompany={card?.cardCompany}
+          cardExpireDate={card?.expireDates}
+          cardNumbers={card.cardNumbers}
+          cardOwnerName={card?.cardOwner}
+          cardNickname={card?.cardNickname}
+          onCardClick={createCardClickHandler(cardId)}
           additionalIcon={
-            <StyledDeleteButton onClick={createCardDeleteButtonClickHandler(key)}>
+            <StyledDeleteButton onClick={createCardDeleteButtonClickHandler(card, cardId)}>
               <CloseIcon />
             </StyledDeleteButton>
           }

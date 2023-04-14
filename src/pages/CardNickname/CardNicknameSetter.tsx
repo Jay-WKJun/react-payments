@@ -2,8 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Card } from '@/components';
-import { useFetchCardList } from '@/hooks';
-import { useCardContext } from '@/contexts/CardContext';
+import { useCardContext, useApplicationContext, convertCardStateToCard } from '@/contexts';
 
 import { useNicknameValidator, useValidateCreatePage, useValidateUpdatePage } from './hooks';
 import { NicknameInput } from './NicknameInput';
@@ -15,20 +14,25 @@ export function CardNicknameSetter() {
   useValidateUpdatePage();
 
   const cardContext = useCardContext();
+  const appContext = useApplicationContext();
   const { cardId } = useParams();
-  const { postCard } = useFetchCardList();
   const validateNickname = useNicknameValidator();
-
-  const cardExpireDate = useMemo(() => cardContext?.expireDates?.map((expireDate) => expireDate.value), [cardContext]);
 
   const handleSubmitCard = useCallback(() => {
     if (!cardContext) return;
 
     validateNickname();
 
-    // @ts-ignore
-    postCard(cardContext, cardId);
-  }, [cardContext, validateNickname, postCard, cardId]);
+    const card = convertCardStateToCard(cardContext);
+    const newCardId = cardId || String(new Date().getTime());
+    appContext?.onCardSubmit(card, newCardId);
+  }, [cardContext, validateNickname, cardId, appContext]);
+
+  const cardExpireDate = useMemo(() => cardContext?.expireDates?.map((expireDate) => expireDate.value), [cardContext]);
+  const cardNumbers = useMemo(
+    () => cardContext?.cardNumbers.map((cardNumberState) => cardNumberState.value),
+    [cardContext]
+  );
 
   return (
     <StyledCarNicknameSetterWrapper>
@@ -40,7 +44,7 @@ export function CardNicknameSetter() {
         disableNickname
         cardCompany={cardContext?.cardCompany?.value}
         cardExpireDate={cardExpireDate}
-        cardNumbers={cardContext?.cardNumbers}
+        cardNumbers={cardNumbers}
         cardOwnerName={cardContext?.cardOwner?.value}
       />
 

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-import type { TApplicationContextValue } from './type';
+import type { ApplicationContextProps } from './type';
 
-export const ApplicationContext = createContext<TApplicationContextValue | null>(null);
+export const ApplicationContext = createContext<ApplicationContextProps | null>(null);
