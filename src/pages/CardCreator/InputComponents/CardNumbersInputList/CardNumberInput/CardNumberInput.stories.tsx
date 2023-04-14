@@ -17,11 +17,10 @@ export default {
 } as ComponentMeta<typeof CardNumberInput>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof CardNumberInput> = ({ cardNumber, index, needDividerRender }) => {
+const Template: ComponentStory<typeof CardNumberInput> = ({ cardNumber, index, needDividerRender, type }) => {
   return (
     <CardProvider
-      // @ts-ignore
-      value={{ ...getInitialCardStore(), cardNumbers: [{ ...getInitialCardStore().cardNumbers[0], ...cardNumber }] }}
+      cardInit={{ ...getInitialCardStore(), cardNumbers: [{ ...getInitialCardStore().cardNumbers[0], ...cardNumber }] }}
     >
       <CardContext.Consumer>
         {(store) =>
@@ -37,6 +36,7 @@ const Template: ComponentStory<typeof CardNumberInput> = ({ cardNumber, index, n
                 }}
               >
                 <CardNumberInput
+                  type={type}
                   cardNumber={store.cardNumbers[0]}
                   index={index}
                   needDividerRender={needDividerRender}

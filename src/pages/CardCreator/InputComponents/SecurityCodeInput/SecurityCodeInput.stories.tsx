@@ -3,22 +3,22 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
 
-import { SecurityCodesInputList } from './SecurityCodeInput';
+import { SecurityCodeInput } from './SecurityCodeInput';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'CardCreator/SecurityCodesInputList',
-  component: SecurityCodesInputList,
+  component: SecurityCodeInput,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof SecurityCodesInputList>;
+} as ComponentMeta<typeof SecurityCodeInput>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SecurityCodesInputList> = ({ securityCodes }) => {
+const Template: ComponentStory<typeof SecurityCodeInput> = ({ securityCode }) => {
   return (
-    <CardProvider value={{ ...getInitialCardStore(), securityCodes: securityCodes! }}>
+    <CardProvider cardInit={{ ...getInitialCardStore(), securityCode: securityCode! }}>
       <CardContext.Consumer>
-        {(store) => store && <SecurityCodesInputList securityCodes={store.securityCodes} />}
+        {(store) => store && <SecurityCodeInput securityCode={store.securityCode} />}
       </CardContext.Consumer>
     </CardProvider>
   );
@@ -27,5 +27,5 @@ const Template: ComponentStory<typeof SecurityCodesInputList> = ({ securityCodes
 export const Primary = Template.bind({});
 
 Primary.args = {
-  securityCodes: getInitialCardStore().securityCodes,
+  securityCode: getInitialCardStore().securityCode,
 };

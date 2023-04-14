@@ -16,10 +16,8 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof CardOwnerInput> = (props) => {
   return (
-    <CardProvider value={{ ...getInitialCardStore(), cardOwners: props.cardOwners! }}>
-      <CardContext.Consumer>
-        {(store) => store && <CardOwnerInput cardOwners={store.cardOwners} />}
-      </CardContext.Consumer>
+    <CardProvider cardInit={{ ...getInitialCardStore(), cardOwner: props.cardOwner! }}>
+      <CardContext.Consumer>{(store) => store && <CardOwnerInput cardOwner={store.cardOwner} />}</CardContext.Consumer>
     </CardProvider>
   );
 };
@@ -27,5 +25,5 @@ const Template: ComponentStory<typeof CardOwnerInput> = (props) => {
 export const Primary = Template.bind({});
 
 Primary.args = {
-  cardOwners: getInitialCardStore().cardOwners,
+  cardOwner: getInitialCardStore().cardOwner,
 };

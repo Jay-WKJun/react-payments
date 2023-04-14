@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof ExpireDatesInputList> = (props) => {
   return (
-    <CardProvider value={{ ...getInitialCardStore(), expireDates: props.expireDates! }}>
+    <CardProvider cardInit={{ ...getInitialCardStore(), expireDates: props.expireDates! }}>
       <CardContext.Consumer>
         {(store) => store && <ExpireDatesInputList expireDates={store?.expireDates} />}
       </CardContext.Consumer>

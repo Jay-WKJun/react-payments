@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof PasswordInput> = ({ password, ...props }) => {
   return (
-    <CardProvider value={{ ...getInitialCardStore(), passwords: [password!] }}>
+    <CardProvider cardInit={{ ...getInitialCardStore(), passwords: [password!] }}>
       <CardContext.Consumer>
         {(store) => store && <PasswordInput password={store.passwords[0]} {...props} />}
       </CardContext.Consumer>

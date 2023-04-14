@@ -25,22 +25,7 @@ Primary.args = {
     theme: 'blue',
     name: 'companyName',
   },
-  cardNumbers: [
-    {
-      value: '1234',
-    },
-    {
-      value: '1234',
-    },
-    {
-      type: 'password',
-      value: '1234',
-    },
-    {
-      type: 'password',
-      value: '1234',
-    },
-  ],
+  cardNumbers: ['1234', '1234', '1234', '1234'],
   cardOwnerName: '',
   cardExpireDate: ['12', '32'],
   cardNickname: 'nickname',
@@ -51,22 +36,7 @@ Secondary.args = {
     theme: 'green',
     name: 'companyName',
   },
-  cardNumbers: [
-    {
-      value: '1234',
-    },
-    {
-      value: '1234',
-    },
-    {
-      type: 'password',
-      value: '1234',
-    },
-    {
-      type: 'password',
-      value: '1234',
-    },
-  ],
+  cardNumbers: ['1234', '1234', '1234', '1234'],
   cardOwnerName: '',
   cardExpireDate: ['12', '32'],
   cardNickname: 'nickname',
