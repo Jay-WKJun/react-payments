@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 export interface Service<T> {
-  get(): Promise<T | null>;
-  post(newStore?: T | null): Promise<T | null>;
+  get: () => Promise<T | null>;
+  post: (newStore?: T | null) => Promise<T | null>;
 }
 
 // 스스로 externalStore를 GET하고 POST해줄 수 있는 객체 넣고, 그 결과를 React lifecycle에 맞춰서 제공해줄 수 있는 hook

@@ -10,9 +10,8 @@ import type {
   SecurityCode,
 } from '@/types';
 
-type TCardState<T> = { value: T };
-export type TCard = {
-  cardCompanies: [TCardState<CardCompany>];
+export type Card = {
+  cardCompany: CardCompany;
   cardNicknames: [TCardState<CardNickname>];
   cardNumbers: [TCardState<CardNumber>, TCardState<CardNumber>, TCardState<CardNumber>, TCardState<CardNumber>];
   expireDates: [TCardState<ExpireMonth>, TCardState<ExpireYear>];
@@ -20,11 +19,11 @@ export type TCard = {
   securityCodes: [TCardState<SecurityCode>];
   passwords: [TCardState<CardPassword>, TCardState<CardPassword>];
 };
-export type TCardList = { [cardId: string]: TCard };
+export type TCardList = { [cardId: string]: Card };
 
 export type TCardListService = Service<TCardList | null>;
 
 export type TApplicationContextValue = {
-  onCardConfirmClick: (card: TCard) => any;
+  onCardConfirmClick: (card: Card) => any;
   service: TCardListService;
 };

@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
 
-import type { CardState, CardType } from './initialCardStore';
+import type { CardState, CardType, CardStateUnitProperties } from './initialCardState';
 
 export interface SetOneCardStateProps {
   type: CardType;
-  index: number;
-  newState: CardState[CardType][number];
+  index?: number;
+  newState: CardStateUnitProperties;
 }
 
 type CardContextApiType = {

@@ -63,7 +63,7 @@ export const CardNumberInput = memo(function CardNumberInput({
         type={type}
         value={value ?? ''}
         ref={(el) => {
-          if (el) setElement('cardNumbers', index, el);
+          if (el) setElement(el, 'cardNumbers', index);
         }}
         className="input-basic"
         changeEventProps={changeEventProps}

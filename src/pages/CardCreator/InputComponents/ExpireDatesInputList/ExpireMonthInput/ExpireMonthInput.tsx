@@ -92,7 +92,7 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
         value={value ?? ''}
         placeholder="월"
         ref={(el) => {
-          setElement('expireDates', index, el);
+          setElement(el, 'expireDates', index);
         }}
         changeEventProps={changeEventProps}
         blurEventProps={blurEventProps}

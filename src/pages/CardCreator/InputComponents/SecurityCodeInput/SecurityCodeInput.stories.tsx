@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
 
-import { SecurityCodesInputList } from './SecurityCodesInputList';
+import { SecurityCodesInputList } from './SecurityCodeInput';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

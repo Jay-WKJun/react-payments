@@ -2,23 +2,20 @@ import { useCallback } from 'react';
 
 import type { CardType } from '@/contexts/CardContext';
 
-type AutoFocusFormType = Extract<
-  CardType,
-  'cardNumbers' | 'expireDates' | 'cardOwners' | 'securityCodes' | 'passwords'
->;
+type AutoFocusFormType = Extract<CardType, 'cardNumbers' | 'expireDates' | 'cardOwner' | 'securityCode' | 'passwords'>;
 
 const formRefIndex: Record<AutoFocusFormType, number> = {
   cardNumbers: 0,
   expireDates: 1,
-  cardOwners: 2,
-  securityCodes: 3,
+  cardOwner: 2,
+  securityCode: 3,
   passwords: 4,
 };
 
 const elementStore: (HTMLElement | null)[][] = [];
 
 export function useSequentialFocus() {
-  const setElement = useCallback((type: AutoFocusFormType, index: number, element: HTMLElement | null) => {
+  const setElement = useCallback((element: HTMLElement | null, type: AutoFocusFormType, index = 0) => {
     const elementListIndex = formRefIndex[type];
     const inputElementList = elementStore[elementListIndex];
 
@@ -28,7 +25,7 @@ export function useSequentialFocus() {
     elementStore[elementListIndex][index] = element;
   }, []);
 
-  const focusNext = useCallback((type: AutoFocusFormType, index: number) => {
+  const focusNext = useCallback((type: AutoFocusFormType, index = 0) => {
     const elementListIndex = formRefIndex[type];
     const inputElementList = elementStore[elementListIndex];
 

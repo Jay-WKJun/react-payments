@@ -79,7 +79,7 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireYear, index
       value={value ?? ''}
       placeholder="년도"
       ref={(el) => {
-        setElement('expireDates', index, el);
+        setElement(el, 'expireDates', index);
       }}
       changeEventProps={changeEventProps}
       blurEventProps={blurEventProps}

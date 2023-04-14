@@ -11,6 +11,7 @@ export function useFetchCardList() {
   const postCard = useCallback(
     (card: TCard, givenCardId?: string) => {
       const cardId = givenCardId || new Date().getTime();
+      // TODO: cardStore를 그대로 받고, 그것들의 value만 빼주는 것을 만들기
 
       if (!fetchedData) {
         fetch('post', { [cardId]: card });

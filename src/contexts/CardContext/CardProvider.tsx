@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useMemo, useState } from 'react';
 
-import { CardState, getInitialCardStore } from './initialCardStore';
+import { CardState, getInitialCardStore } from './initialCardState';
 import { CardContextApi, CardContext, SetOneCardStateProps } from './cardContext';
 
 interface CardProviderProps {
@@ -15,14 +15,22 @@ export function CardProvider({ cardInit, children }: PropsWithChildren<CardProvi
       setCardState(getInitialCardStore());
     }
 
-    function setOneCardState({ type, index, newState }: SetOneCardStateProps) {
+    function setOneCardState({ type, index = 0, newState }: SetOneCardStateProps) {
       setCardState((prev) => {
-        const newCardStateList = [...prev[type]];
-        newCardStateList[index] = newState;
+        if (Array.isArray(prev[type])) {
+          // @ts-ignore
+          const newCardStateList = [...prev[type]];
+          newCardStateList[index] = newState;
+
+          return {
+            ...prev,
+            [type]: newCardStateList,
+          };
+        }
 
         return {
           ...prev,
-          [type]: newCardStateList,
+          [type]: newState,
         };
       });
     }

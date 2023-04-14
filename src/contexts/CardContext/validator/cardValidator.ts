@@ -1,4 +1,4 @@
-import { CardState, CardType } from '@/contexts/CardContext';
+import type { CardState, CardStateUnitProperties, CardType } from '@/contexts/CardContext';
 import type { CardCompany } from '@/types';
 
 import { SetOneCardStateProps } from '../cardContext';
@@ -18,7 +18,7 @@ class CardValidator {
 
   validator;
 
-  constructor({ type, index }: { type: CardType; index: number }) {
+  constructor({ type, index = 0 }: { type: CardType; index?: number }) {
     this.type = type;
     this.index = index;
     this.validator = this.#chooseValidator(type, index);
@@ -26,17 +26,17 @@ class CardValidator {
 
   #chooseValidator(type: CardType, index: number) {
     switch (type) {
-      case 'cardCompanies':
+      case 'cardCompany':
         return validateCardCompany;
-      case 'cardNicknames':
+      case 'cardNickname':
         return validateCardNickname;
       case 'cardNumbers':
         return validateCardNumber;
-      case 'cardOwners':
+      case 'cardOwner':
         return validateCardOwner;
       case 'passwords':
         return validateCardPassword;
-      case 'securityCodes':
+      case 'securityCode':
         return validateSecurityCode;
       case 'expireDates': {
         if (index === 0) return validateExpireMonth;
@@ -56,21 +56,30 @@ class CardValidator {
 export function cardValidator(cardState: [CardType, CardState[CardType]][]): SetOneCardStateProps | null {
   let invalidateCardState: SetOneCardStateProps | null = null;
 
-  cardState.some(([type, states]) => {
-    return states.some(({ value }, index) => {
-      const cardValidator = new CardValidator({ type, index });
-      const errorMessage = cardValidator.validate(value);
+  cardState.some(([type, state]) => {
+    if (Array.isArray(state)) {
+      const states = state;
+      return states.some((state, index) => {
+        return validateState(type, state, index);
+      });
+    }
 
-      if (errorMessage) {
-        const { type, index } = cardValidator;
-        // @ts-ignore
-        invalidateCardState = { type, index, newState: { value, errorMessage } };
-        return true;
-      }
-
-      return false;
-    });
+    return validateState(type, state);
   });
+
+  function validateState(type: CardType, { value }: CardStateUnitProperties, index?: number) {
+    const cardValidator = new CardValidator({ type, index });
+    const errorMessage = cardValidator.validate(value);
+
+    if (errorMessage) {
+      const { type, index } = cardValidator;
+      // @ts-ignore
+      invalidateCardState = { type, index, newState: { value, errorMessage } };
+      return true;
+    }
+
+    return false;
+  }
 
   return invalidateCardState;
 }

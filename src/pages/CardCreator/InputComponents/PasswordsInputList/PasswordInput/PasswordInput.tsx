@@ -56,7 +56,7 @@ export function PasswordInput({ password, index }: PasswordInputProps) {
       className="input-basic w-15 mr-10"
       value={value ?? ''}
       ref={(el) => {
-        setElement('passwords', index, el);
+        setElement(el, 'passwords', index);
       }}
       changeEventProps={changeEventProps}
       error={{ isError }}

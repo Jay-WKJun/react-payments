@@ -12,23 +12,33 @@ import {
 } from './types';
 
 export type CardState = {
-  cardNicknames: CardNicknameState[];
+  cardNickname: CardNicknameState;
   cardNumbers: CardNumberState[];
   expireDates: [ExpireMonthState, ExpireYearState];
-  cardOwners: CardOwnerState[];
-  securityCodes: SecurityCodeState[];
+  cardOwner: CardOwnerState;
+  securityCode: SecurityCodeState;
   passwords: CardPasswordState[];
-  cardCompanies: CardCompanyState[];
+  cardCompany: CardCompanyState;
 };
 
+export type CardStateUnitProperties =
+  | CardNicknameState
+  | CardNumberState
+  | ExpireMonthState
+  | ExpireYearState
+  | CardOwnerState
+  | SecurityCodeState
+  | CardPasswordState
+  | CardCompanyState;
+
 const initialCardState: CardState = {
-  cardNicknames: [{}],
+  cardNickname: {},
   cardNumbers: [{}, {}, {}, {}],
   expireDates: [{}, {}],
-  cardOwners: [{}],
-  securityCodes: [{}],
+  cardOwner: {},
+  securityCode: {},
   passwords: [{}, {}],
-  cardCompanies: [{}],
+  cardCompany: {},
 };
 
 export type CardType = keyof CardState;

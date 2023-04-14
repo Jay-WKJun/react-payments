@@ -2,15 +2,14 @@ import React, { ChangeEvent, memo, useMemo } from 'react';
 
 import { useCardContextApis, checkIsCardOwnerFulfilled, validateCardOwner, CardState } from '@/contexts/CardContext';
 
-import { CardInputWrapperPure, CardInfoInputElement } from '../components';
 import { useSequentialFocus } from '../../hooks';
+import { CardInputWrapperPure, CardInfoInputElement } from '../components';
 
 interface CardOwnerInputProps {
-  cardOwners: CardState['cardOwners'];
+  cardOwner: CardState['cardOwner'];
 }
 
-export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardOwnerInputProps) {
-  const cardOwner = useMemo(() => cardOwners[0], [cardOwners]);
+export const CardOwnerInput = memo(function CardOwnerInput({ cardOwner }: CardOwnerInputProps) {
   const isError = !!cardOwner.errorMessage;
 
   const cardContextApis = useCardContextApis();
@@ -23,10 +22,10 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
         const errorMessage = validateCardOwner(value);
         const newCardOwnerState = { value, errorMessage };
         if (checkIsCardOwnerFulfilled(newCardOwnerState)) {
-          focusNext('cardOwners', 0);
+          focusNext('cardOwner');
         }
 
-        cardContextApis?.setOneCardState({ type: 'cardOwners', index: 0, newState: newCardOwnerState });
+        cardContextApis?.setOneCardState({ type: 'cardOwner', newState: newCardOwnerState });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +39,7 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
 
   const handleCardOwnerInputFocus = () => {
     const errorMessage = validateCardOwner(cardOwner?.value);
-    cardContextApis?.setOneCardState({ type: 'cardOwners', index: 0, newState: { ...cardOwner, errorMessage } });
+    cardContextApis?.setOneCardState({ type: 'cardOwner', newState: { ...cardOwner, errorMessage } });
   };
 
   const inputHeader = useMemo(
@@ -56,7 +55,7 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwners }: CardO
         value={cardOwner?.value ?? ''}
         placeholder="소유주 이름"
         ref={(el) => {
-          setElement('cardOwners', 0, el);
+          setElement(el, 'cardOwner');
         }}
         changeEventProps={changeEventProps}
         error={{ isError }}
