@@ -13,7 +13,7 @@ export function NicknameInput({ cardNickname }: NicknameInputProps) {
 
   const handleCardNicknameChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      cardContextApis?.setOneCardState({ type: 'cardNicknames', index: 0, newState: { value: e.currentTarget.value } });
+      cardContextApis?.setOneCardState({ type: 'cardNickname', newState: { value: e.currentTarget.value } });
     },
     [cardContextApis]
   );

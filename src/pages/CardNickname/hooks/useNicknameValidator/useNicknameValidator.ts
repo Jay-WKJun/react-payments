@@ -9,12 +9,10 @@ export function useNicknameValidator() {
   return useCallback(() => {
     if (!cardContext) return;
 
-    const { cardNicknames, cardCompanies } = cardContext;
-    const cardCompany = cardCompanies[0];
-    const cardNickname = cardNicknames[0];
+    const { cardNickname, cardCompany } = cardContext;
 
     if (!cardNickname || !cardNickname.value) {
-      cardContextApis?.setOneCardState({ type: 'cardNicknames', index: 0, newState: { value: cardCompany.value } });
+      cardContextApis?.setOneCardState({ type: 'cardNickname', index: 0, newState: { value: cardCompany.value } });
     }
   }, [cardContext, cardContextApis]);
 }

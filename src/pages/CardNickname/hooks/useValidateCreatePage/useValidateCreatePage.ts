@@ -14,13 +14,13 @@ export function useValidateCreatePage() {
   useEffect(() => {
     if (cardId || !cardContext || !navigate) return;
 
-    const { cardCompanies, cardNumbers, expireDates, cardOwners, passwords, securityCodes } = cardContext;
+    const { cardCompany, cardNumbers, expireDates, cardOwner, passwords, securityCode } = cardContext;
     const isValidate = validateCardStates([
-      ['cardCompanies', cardCompanies],
+      ['cardCompany', cardCompany],
       ['cardNumbers', cardNumbers],
       ['expireDates', expireDates],
-      ['cardOwners', cardOwners],
-      ['securityCodes', securityCodes],
+      ['cardOwner', cardOwner],
+      ['securityCode', securityCode],
       ['passwords', passwords],
     ]);
 

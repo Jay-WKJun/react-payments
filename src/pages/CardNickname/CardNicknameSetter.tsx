@@ -38,13 +38,13 @@ export function CardNicknameSetter() {
 
       <Card
         disableNickname
-        cardCompany={cardContext?.cardCompanies[0]?.value}
+        cardCompany={cardContext?.cardCompany?.value}
         cardExpireDate={cardExpireDate}
         cardNumbers={cardContext?.cardNumbers}
-        cardOwnerName={cardContext?.cardOwners?.[0]?.value}
+        cardOwnerName={cardContext?.cardOwner?.value}
       />
 
-      <NicknameInput cardNickname={cardContext?.cardNicknames[0]} />
+      <NicknameInput cardNickname={cardContext?.cardNickname} />
 
       <CardNicknameSubmitButton onSubmit={handleSubmitCard} />
     </StyledCarNicknameSetterWrapper>
