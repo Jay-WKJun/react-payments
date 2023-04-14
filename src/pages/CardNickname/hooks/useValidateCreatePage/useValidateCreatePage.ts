@@ -1,17 +1,32 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { routes } from '@/router';
 import { useCardContext } from '@/contexts/CardContext';
+import { useCardStatesValidator } from '@/hooks';
+import { routes } from '@/router';
 
 export function useValidateCreatePage() {
   const { cardId } = useParams();
   const navigate = useNavigate();
-  const cardStore = useCardContext();
+  const cardContext = useCardContext();
+  const validateCardStates = useCardStatesValidator();
 
   useEffect(() => {
-    if (cardId || !cardStore || !navigate) return;
+    if (cardId || !cardContext || !navigate) return;
 
-    const { cardCompanies, cardNumbers, expireDates, cardOwners, passwords, securityCodes } = cardStore;
-  }, [cardId, navigate, cardStore]);
+    const { cardCompanies, cardNumbers, expireDates, cardOwners, passwords, securityCodes } = cardContext;
+    const isValidate = validateCardStates([
+      ['cardCompanies', cardCompanies],
+      ['cardNumbers', cardNumbers],
+      ['expireDates', expireDates],
+      ['cardOwners', cardOwners],
+      ['securityCodes', securityCodes],
+      ['passwords', passwords],
+    ]);
+
+    if (!isValidate) {
+      alert('카드 정보가 유효하지 않습니다.');
+      navigate(routes.cardCreator);
+    }
+  }, [cardId, navigate, cardContext, validateCardStates]);
 }

@@ -55,6 +55,7 @@ export function CardList() {
           }
         />
       ))}
+
       <CardModal cardInfo={selectedCard} onModalHide={() => setSelectedCard(null)} />
     </StyledCardListContainer>
   );

@@ -27,7 +27,7 @@ export function CardProvider({ cardInit, children }: PropsWithChildren<CardProvi
       });
     }
 
-    return { setOneCardState, initCardState };
+    return { setOneCardState, initCardState, setCardState };
   }, []);
 
   return (

@@ -20,7 +20,10 @@ export function useValidateUpdatePage() {
       if (!card) {
         alert('해당 카드가 존재하지 않습니다.');
         navigate(routes.home);
+        return;
       }
+
+      cardContextApis?.setCardState(card);
     },
     [cardId, cardList, navigate, cardContextApis]
   );
