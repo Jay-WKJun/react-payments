@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { routes } from '@/router';
 
-import { useNicknameSubmitEvent } from '../hooks';
+interface CardNicknameSubmitButtonProps {
+  onSubmit: (e: MouseEvent<HTMLAnchorElement>) => void;
+}
 
-export function CardNicknameSubmitButton() {
-  const handleSubmitButtonClick = useNicknameSubmitEvent();
-
+export function CardNicknameSubmitButton({ onSubmit }: CardNicknameSubmitButtonProps) {
   return (
     <div className="button-box mt-50">
-      <Link to={routes.home} className="button-text" onClick={handleSubmitButtonClick}>
+      <Link to={routes.home} className="button-text" onClick={onSubmit}>
         다음
       </Link>
     </div>
