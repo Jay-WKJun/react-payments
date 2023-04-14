@@ -19,30 +19,26 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof ExpireYearInput> = ({ expireYear, ...props }) => {
   return (
-    <CardProvider cardInit={{ ...getInitialCardStore(), expireDates: [expireYear!, expireYear!] }}>
+    <CardProvider cardInit={{ ...getInitialCardStore(), expireDates: [expireYear, expireYear] }}>
       <CardContext.Consumer>
-        {/* @ts-ignore */}
-        {(store) => store && <ExpireYearInput expireDate={store.expireDates[props.index]} {...props} />}
+        {(store) => store && <ExpireYearInput expireYear={store.expireDates[props.index]} {...props} />}
       </CardContext.Consumer>
     </CardProvider>
   );
 };
 
-export const Month = Template.bind({});
 export const Year = Template.bind({});
 export const WithDivider = Template.bind({});
 
-Month.args = {
-  // @ts-ignore
-  expireDate: getInitialCardStore().expireDates[0],
-  index: 0,
+Year.args = {
+  expireYear: getInitialCardStore().expireDates[1],
+  index: 1,
 };
 
 WithDivider.args = {
-  // @ts-ignore
-  expireDate: {
-    ...getInitialCardStore().expireDates[0],
+  expireYear: {
+    ...getInitialCardStore().expireDates[1],
     value: '12',
   },
-  index: 0,
+  index: 1,
 };
