@@ -29,11 +29,12 @@ export function SecurityCodeInput({ securityCode, index = 0 }: SecurityCodeInput
       setState: (value: string) => {
         const errorMessage = validateSecurityCode(value);
         const newSecurityCodeState = { value, errorMessage };
+
         if (checkIsSecurityCodeFulfilled(newSecurityCodeState)) {
           focusNext('securityCodes', index);
         }
 
-        cardContextApis?.setOneCardState({ type: 'securityCodes', index, newState: {} });
+        cardContextApis?.setOneCardState({ type: 'securityCodes', index, newState: newSecurityCodeState });
       },
     },
     checkWhetherSetState: (e: ChangeEvent<HTMLInputElement>) => {
