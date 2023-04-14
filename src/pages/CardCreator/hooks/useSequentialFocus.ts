@@ -33,7 +33,7 @@ export function useSequentialFocus() {
     const inputElementList = elementStore[elementListIndex];
 
     if (index >= inputElementList.length - 1) {
-      elementStore[elementListIndex + 1][0]?.focus();
+      elementStore[elementListIndex + 1]?.[0]?.focus();
       return;
     }
 
