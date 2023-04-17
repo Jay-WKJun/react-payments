@@ -1,14 +1,15 @@
 import React, { memo, MouseEvent, ReactElement } from 'react';
 
 import { ThemeSetter } from '@/components';
-
 import type {
-  TCardCompanyProp,
-  TCardExpireDateProp,
-  TCardNicknameProp,
-  TCardNumberProp,
-  TCardOwnerNameProp,
-} from './types';
+  CardCompany,
+  CardNickname as CardNicknameModel,
+  CardNumber,
+  CardOwner,
+  ExpireMonth,
+  ExpireYear,
+} from '@/types';
+
 import { CardNumbers } from './CardNumbers';
 import { CardOwnerName } from './CardOwnerName';
 import { CardExpireDate } from './CardExpireDate';
@@ -19,11 +20,11 @@ interface CardProps {
   disableNickname?: boolean;
   additionalIcon?: ReactElement;
   additionalBottomElement?: ReactElement;
-  cardCompany?: TCardCompanyProp;
-  cardNumbers?: TCardNumberProp[];
-  cardOwnerName?: TCardOwnerNameProp;
-  cardExpireDate?: TCardExpireDateProp[];
-  cardNickname?: TCardNicknameProp;
+  cardCompany?: CardCompany;
+  cardNumbers?: CardNumber[];
+  cardOwnerName?: CardOwner;
+  cardExpireDate?: [ExpireMonth, ExpireYear];
+  cardNickname?: CardNicknameModel;
   onCardClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 

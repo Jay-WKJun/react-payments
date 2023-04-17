@@ -6,7 +6,7 @@ import { useApplicationContext, Card as CardModel } from '@/contexts';
 import { useFlushCardContextStore } from './hooks';
 import { EmptyCard } from './EmptyCard';
 import { CardModal, TCardModalDTO } from './CardModal';
-import { StyledDeleteButton, StyledCardListContainer } from './CardList.styled';
+import { StyledDeleteButton, StyledCardListContainer, StyledCardListWrapper } from './CardList.styled';
 
 export function CardList() {
   useFlushCardContextStore();
@@ -41,23 +41,25 @@ export function CardList() {
 
   return (
     <StyledCardListContainer>
-      <EmptyCard />
-      {sortCardListToDescendingOrderOfKey?.map(([cardId, card]) => (
-        <Card
-          key={cardId}
-          cardCompany={card?.cardCompany}
-          cardExpireDate={card?.expireDates}
-          cardNumbers={card.cardNumbers}
-          cardOwnerName={card?.cardOwner}
-          cardNickname={card?.cardNickname}
-          onCardClick={createCardClickHandler(cardId)}
-          additionalIcon={
-            <StyledDeleteButton onClick={createCardDeleteButtonClickHandler(card, cardId)}>
-              <CloseIcon />
-            </StyledDeleteButton>
-          }
-        />
-      ))}
+      <StyledCardListWrapper>
+        <EmptyCard />
+        {sortCardListToDescendingOrderOfKey?.map(([cardId, card]) => (
+          <Card
+            key={cardId}
+            cardCompany={card?.cardCompany}
+            cardExpireDate={card?.expireDates}
+            cardNumbers={card.cardNumbers}
+            cardOwnerName={card?.cardOwner}
+            cardNickname={card?.cardNickname}
+            onCardClick={createCardClickHandler(cardId)}
+            additionalIcon={
+              <StyledDeleteButton onClick={createCardDeleteButtonClickHandler(card, cardId)}>
+                <CloseIcon />
+              </StyledDeleteButton>
+            }
+          />
+        ))}
+      </StyledCardListWrapper>
 
       <CardModal cardInfo={selectedCard} onModalHide={() => setSelectedCard(null)} />
     </StyledCardListContainer>
