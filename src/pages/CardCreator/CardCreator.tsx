@@ -75,7 +75,7 @@ export function CardCreator() {
 
       <Card
         cardCompany={cardCompany.value}
-        cardExpireDate={expireDates?.map((expireDateState) => expireDateState.value)}
+        cardExpireDate={[expireDates[0].value, expireDates[1].value]}
         cardNumbers={cardNumbers.map((cardNumberState) => cardNumberState.value)}
         cardOwnerName={cardOwner?.value}
         additionalBottomElement={

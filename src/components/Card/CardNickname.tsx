@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@/stitches.config';
 
-import { TCardNicknameProp } from './types';
+import { CardNicknameProp } from './types';
 
 const StyledCardNickname = styled('span', {
   fontWeight: 'bold',
@@ -9,7 +9,7 @@ const StyledCardNickname = styled('span', {
 });
 
 interface CardNicknameProps {
-  nickname?: TCardNicknameProp;
+  nickname?: CardNicknameProp;
 }
 
 export function CardNickname({ nickname }: CardNicknameProps) {

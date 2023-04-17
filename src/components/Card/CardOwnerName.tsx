@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@/stitches.config';
 
-import { TCardOwnerNameProp } from './types';
+import { CardOwnerProp } from './types';
 
 const StyledCardOwnerName = styled('span', {
   maxWidth: '75%',
@@ -10,7 +10,7 @@ const StyledCardOwnerName = styled('span', {
 });
 
 interface CardOwnerNameProps {
-  ownerName?: TCardOwnerNameProp;
+  ownerName?: CardOwnerProp;
 }
 
 export function CardOwnerName({ ownerName }: CardOwnerNameProps) {

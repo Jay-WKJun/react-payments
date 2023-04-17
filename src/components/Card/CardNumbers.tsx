@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { TCardNumberProp } from './types';
+import { CardNumberProp } from './types';
 
 interface CardNumbersProps {
-  cardNumbers?: TCardNumberProp[];
+  cardNumbers?: CardNumberProp;
 }
 
 export function CardNumbers({ cardNumbers }: CardNumbersProps) {
@@ -17,7 +17,7 @@ export function CardNumbers({ cardNumbers }: CardNumbersProps) {
   );
 }
 
-function CardNumber({ hide, value }: { hide: boolean; value: TCardNumberProp }) {
+function CardNumber({ hide, value }: { hide: boolean; value: CardNumberProp[number] }) {
   return <span className="card-number-wrapper card-number-spacing">{value && makeCardNumber(value, hide)}</span>;
 }
 

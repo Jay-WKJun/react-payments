@@ -2,10 +2,10 @@ import React from 'react';
 
 import { padNumber } from '@/utils';
 
-import { TCardExpireDateProp } from './types';
+import type { ExpireDateProp } from './types';
 
 interface CardExpireDateProps {
-  expireDates?: TCardExpireDateProp[];
+  expireDates?: ExpireDateProp;
 }
 
 export function CardExpireDate({ expireDates }: CardExpireDateProps) {
