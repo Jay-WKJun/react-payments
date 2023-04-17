@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useMemo, useState } from 'react';
 
-import { CardState, getInitialCardStore } from './initialCardState';
+import { CardState, getInitialCardState } from './cardState';
 import { CardContextApi, CardContext, SetOneCardStateProps } from './cardContext';
 
 interface CardProviderProps {
@@ -8,11 +8,11 @@ interface CardProviderProps {
 }
 
 export function CardProvider({ cardInit, children }: PropsWithChildren<CardProviderProps>) {
-  const [cardState, setCardState] = useState(cardInit || getInitialCardStore());
+  const [cardState, setCardState] = useState(cardInit || getInitialCardState());
 
   const cardContextApis = useMemo(() => {
     function initCardState() {
-      setCardState(getInitialCardStore());
+      setCardState(getInitialCardState());
     }
 
     function setOneCardState({ type, index = 0, newState }: SetOneCardStateProps) {

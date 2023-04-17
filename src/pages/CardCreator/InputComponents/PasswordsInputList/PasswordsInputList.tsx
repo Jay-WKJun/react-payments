@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import type { CardState } from '@/contexts/CardContext/initialCardState';
+import type { CardState } from '@/contexts/CardContext';
 
 import { CardInputWrapperPure } from '../components';
 import { PasswordInput } from './PasswordInput';

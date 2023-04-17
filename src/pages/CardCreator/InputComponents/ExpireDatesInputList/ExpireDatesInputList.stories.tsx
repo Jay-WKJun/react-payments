@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
 
 import { ExpireDatesInputList } from './ExpireDatesInputList';
 
@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof ExpireDatesInputList> = (props) => {
   return (
-    <CardProvider cardInit={{ ...getInitialCardStore(), expireDates: props.expireDates! }}>
+    <CardProvider cardInit={{ ...getInitialCardState(), expireDates: props.expireDates! }}>
       <CardContext.Consumer>
         {(store) => store && <ExpireDatesInputList expireDates={store?.expireDates} />}
       </CardContext.Consumer>
@@ -27,5 +27,5 @@ const Template: ComponentStory<typeof ExpireDatesInputList> = (props) => {
 export const Primary = Template.bind({});
 
 Primary.args = {
-  expireDates: getInitialCardStore().expireDates,
+  expireDates: getInitialCardState().expireDates,
 };

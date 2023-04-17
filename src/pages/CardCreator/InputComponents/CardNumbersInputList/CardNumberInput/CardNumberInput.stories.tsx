@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
 
 import { CardNumberInput } from './CardNumberInput';
 
@@ -20,7 +20,7 @@ export default {
 const Template: ComponentStory<typeof CardNumberInput> = ({ cardNumber, index, needDividerRender, type }) => {
   return (
     <CardProvider
-      cardInit={{ ...getInitialCardStore(), cardNumbers: [{ ...getInitialCardStore().cardNumbers[0], ...cardNumber }] }}
+      cardInit={{ ...getInitialCardState(), cardNumbers: [{ ...getInitialCardState().cardNumbers[0], ...cardNumber }] }}
     >
       <CardContext.Consumer>
         {(store) =>
@@ -56,18 +56,18 @@ export const SecreteValue = Template.bind({});
 
 Primary.args = {
   index: 0,
-  cardNumber: getInitialCardStore().cardNumbers[0],
+  cardNumber: getInitialCardState().cardNumbers[0],
 };
 
 WithDivider.args = {
-  cardNumber: getInitialCardStore().cardNumbers[0],
+  cardNumber: getInitialCardState().cardNumbers[0],
   index: 0,
   needDividerRender: true,
 };
 
 SecreteValue.args = {
   type: 'password',
-  cardNumber: getInitialCardStore().cardNumbers[0],
+  cardNumber: getInitialCardState().cardNumbers[0],
   index: 0,
   needDividerRender: true,
 };

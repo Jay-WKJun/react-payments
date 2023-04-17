@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
 
-import type { CardState, CardType, CardStateUnitProperties } from './initialCardState';
+import type { CardState, CardType, CardStateUnitProperties } from './cardState';
 
 export interface SetOneCardStateProps {
   type: CardType;

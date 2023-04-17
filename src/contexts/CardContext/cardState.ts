@@ -43,6 +43,6 @@ const initialCardState: CardState = {
 
 export type CardType = keyof CardState;
 
-export function getInitialCardStore() {
+export function getInitialCardState() {
   return cloneDeep(initialCardState);
 }

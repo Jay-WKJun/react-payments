@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
 
 import { CardOwnerInput } from './CardOwnerInput';
 
@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof CardOwnerInput> = (props) => {
   return (
-    <CardProvider cardInit={{ ...getInitialCardStore(), cardOwner: props.cardOwner! }}>
+    <CardProvider cardInit={{ ...getInitialCardState(), cardOwner: props.cardOwner! }}>
       <CardContext.Consumer>{(store) => store && <CardOwnerInput cardOwner={store.cardOwner} />}</CardContext.Consumer>
     </CardProvider>
   );
@@ -25,5 +25,5 @@ const Template: ComponentStory<typeof CardOwnerInput> = (props) => {
 export const Primary = Template.bind({});
 
 Primary.args = {
-  cardOwner: getInitialCardStore().cardOwner,
+  cardOwner: getInitialCardState().cardOwner,
 };

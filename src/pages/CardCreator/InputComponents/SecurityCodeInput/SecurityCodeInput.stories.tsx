@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
 
 import { SecurityCodeInput } from './SecurityCodeInput';
 
@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof SecurityCodeInput> = ({ securityCode }) => {
   return (
-    <CardProvider cardInit={{ ...getInitialCardStore(), securityCode: securityCode! }}>
+    <CardProvider cardInit={{ ...getInitialCardState(), securityCode: securityCode! }}>
       <CardContext.Consumer>
         {(store) => store && <SecurityCodeInput securityCode={store.securityCode} />}
       </CardContext.Consumer>
@@ -27,5 +27,5 @@ const Template: ComponentStory<typeof SecurityCodeInput> = ({ securityCode }) =>
 export const Primary = Template.bind({});
 
 Primary.args = {
-  securityCode: getInitialCardStore().securityCode,
+  securityCode: getInitialCardState().securityCode,
 };

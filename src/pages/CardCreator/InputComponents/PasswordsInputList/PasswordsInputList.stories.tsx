@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
 
 import { PasswordsInputList } from './PasswordsInputList';
 
@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof PasswordsInputList> = ({ passwords }) => {
   return (
-    <CardProvider cardInit={{ ...getInitialCardStore(), passwords: passwords! }}>
+    <CardProvider cardInit={{ ...getInitialCardState(), passwords: passwords! }}>
       <CardContext.Consumer>
         {(store) => store && <PasswordsInputList passwords={store.passwords} />}
       </CardContext.Consumer>
@@ -27,5 +27,5 @@ const Template: ComponentStory<typeof PasswordsInputList> = ({ passwords }) => {
 export const Primary = Template.bind({});
 
 Primary.args = {
-  passwords: getInitialCardStore().passwords,
+  passwords: getInitialCardState().passwords,
 };

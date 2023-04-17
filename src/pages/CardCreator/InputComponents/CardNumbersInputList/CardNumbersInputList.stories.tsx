@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardStore } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
 
 import { CardNumbersInputList } from './CardNumbersInputList';
 
@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof CardNumbersInputList> = (props) => {
   return (
-    <CardProvider cardInit={{ ...getInitialCardStore(), cardNumbers: props.cardNumbers! }}>
+    <CardProvider cardInit={{ ...getInitialCardState(), cardNumbers: props.cardNumbers! }}>
       <CardContext.Consumer>
         {(store) => store && <CardNumbersInputList cardNumbers={store.cardNumbers} />}
       </CardContext.Consumer>
@@ -28,11 +28,11 @@ export const Primary = Template.bind({});
 export const ValueSet = Template.bind({});
 
 Primary.args = {
-  cardNumbers: getInitialCardStore().cardNumbers,
+  cardNumbers: getInitialCardState().cardNumbers,
 };
 
 ValueSet.args = {
-  cardNumbers: getInitialCardStore().cardNumbers.map((cardNumber) => {
+  cardNumbers: getInitialCardState().cardNumbers.map((cardNumber) => {
     cardNumber.value = '1234';
     return cardNumber;
   }),
