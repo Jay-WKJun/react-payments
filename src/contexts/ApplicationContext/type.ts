@@ -1,25 +1,27 @@
-import type {
-  CardCompany,
-  CardNickname,
-  CardNumber,
-  CardOwner,
-  CardPassword,
-  ExpireMonth,
-  ExpireYear,
-  SecurityCode,
+import z from 'zod';
+
+import {
+  cardCompanySchema,
+  cardNickNameSchema,
+  cardNumberSchema,
+  cardOwnerSchema,
+  cardPasswordSchema,
+  expireMonthSchema,
+  expireYearSchema,
+  securityCodeSchema,
 } from '@/types';
 
-import type { CardType } from '../CardContext';
+export const CardSchema = z.object({
+  cardCompany: cardCompanySchema,
+  cardNickname: cardNickNameSchema,
+  cardNumbers: z.array(cardNumberSchema).length(4),
+  expireDates: z.tuple([expireMonthSchema, expireYearSchema]),
+  cardOwner: cardOwnerSchema,
+  securityCode: securityCodeSchema,
+  passwords: z.array(cardPasswordSchema).length(2),
+});
 
-export interface Card extends Record<CardType, unknown> {
-  cardCompany: CardCompany;
-  cardNickname: CardNickname;
-  cardNumbers: [CardNumber, CardNumber, CardNumber, CardNumber];
-  expireDates: [ExpireMonth, ExpireYear];
-  cardOwner: CardOwner;
-  securityCode: SecurityCode;
-  passwords: [CardPassword, CardPassword];
-}
+export type Card = z.infer<typeof CardSchema>;
 export type CardList = { [cardId: string]: Card };
 
 export interface ApplicationContextProps {
