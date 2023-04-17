@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { Card } from '@/components';
 import { useCardContext, useApplicationContext, convertCardStateToCard } from '@/contexts';
+import type { ExpireMonth, ExpireYear } from '@/types';
 
 import { useNicknameValidator, useValidateCreatePage, useValidateUpdatePage } from './hooks';
 import { NicknameInput } from './NicknameInput';
@@ -28,7 +29,11 @@ export function CardNicknameSetter() {
     appContext?.onCardSubmit(card, newCardId);
   }, [cardContext, validateNickname, cardId, appContext]);
 
-  const cardExpireDate = useMemo(() => cardContext?.expireDates?.map((expireDate) => expireDate.value), [cardContext]);
+  const cardExpireDate = useMemo(() => {
+    if (!cardContext) return;
+
+    return [cardContext.expireDates[0], cardContext.expireDates[1]] as [ExpireMonth, ExpireYear];
+  }, [cardContext]);
   const cardNumbers = useMemo(
     () => cardContext?.cardNumbers.map((cardNumberState) => cardNumberState.value),
     [cardContext]

@@ -1,18 +1,19 @@
 import z from 'zod';
 
-import { themes } from '@/theme';
+import { Themes, themes } from '@/theme';
 import { entryObject } from '@/utils';
 
 export const cardCompanySchema = z.object({
   name: z.string(),
   theme: z.union(
+    // FIXME: validation is work but Type isn't fit
     // @ts-ignore
     entryObject(themes)
       .map(([key]) => z.literal(key))
       .flat()
   ),
 });
-export type CardCompany = z.infer<typeof cardCompanySchema>;
+export type CardCompany = { name: string; theme: Themes };
 
 export const cardNickNameSchema = z.string().min(1).max(10);
 export type CardNickname = z.infer<typeof cardNickNameSchema>;

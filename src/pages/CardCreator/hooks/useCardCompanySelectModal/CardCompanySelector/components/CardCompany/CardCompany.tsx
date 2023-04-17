@@ -1,17 +1,19 @@
 import React from 'react';
 
 import { themes } from '@/theme';
-import type { TCardCompany } from '@/types';
+import type { CardCompany as CardCompanyModel } from '@/types';
 
 import { StyledCardCompany, StyledCardCompanyColor, StyledCardCompanyName } from './CardCompany.styled';
 
 interface CardCompanyProps {
-  cardCompany: TCardCompany;
-  onClick?: (cardCompany: TCardCompany) => void;
+  cardCompany: CardCompanyModel;
+  onClick?: (cardCompany: CardCompanyModel) => void;
 }
 
 export function CardCompany({ cardCompany, onClick }: CardCompanyProps) {
   if (!cardCompany) return null;
+
+  const { theme } = cardCompany;
 
   return (
     <StyledCardCompany
@@ -19,7 +21,7 @@ export function CardCompany({ cardCompany, onClick }: CardCompanyProps) {
         if (onClick) onClick(cardCompany);
       }}
     >
-      <StyledCardCompanyColor className={themes[cardCompany.theme]} />
+      <StyledCardCompanyColor className={themes[theme]} />
       <StyledCardCompanyName>{cardCompany?.name}</StyledCardCompanyName>
     </StyledCardCompany>
   );

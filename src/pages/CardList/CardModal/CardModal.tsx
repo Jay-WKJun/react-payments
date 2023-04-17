@@ -5,6 +5,7 @@ import { Card } from '@/components';
 import { Card as CardModel, useApplicationContext } from '@/contexts/ApplicationContext';
 import { useModal } from '@/hooks';
 import { routes } from '@/router';
+import type { CardCompany } from '@/types';
 
 import {
   StyledCardModalWrapper,
@@ -12,7 +13,6 @@ import {
   StyledConfirmButton,
   StyledCardModalButton,
 } from './CardModal.styled';
-import { convertCardToCardState, useCardContextApis } from '@/contexts';
 
 export type TCardModalDTO = { id: string; card: CardModel };
 
@@ -58,7 +58,7 @@ export function CardModal({ cardInfo, onModalHide }: CardModalProps) {
     <Modal onBackgroundClick={onModalHide}>
       <StyledCardModalWrapper>
         <Card
-          cardCompany={card?.cardCompany}
+          cardCompany={card?.cardCompany as CardCompany}
           cardExpireDate={card?.expireDates}
           cardNumbers={card?.cardNumbers}
           cardOwnerName={card?.cardOwner}

@@ -1,6 +1,6 @@
-import type { TCardCompany } from '@/types';
+import type { CardCompany } from '@/types';
 
-export const cardCompanyList: TCardCompany[] = [
+export const cardCompanyList: CardCompany[] = [
   {
     name: '포코카드',
     theme: 'red',

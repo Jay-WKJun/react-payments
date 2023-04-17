@@ -2,6 +2,7 @@ import React, { MouseEvent, useCallback, useMemo, useState } from 'react';
 
 import { Card, CloseIcon } from '@/components';
 import { useApplicationContext, Card as CardModel } from '@/contexts';
+import type { CardCompany } from '@/types';
 
 import { useFlushCardContextStore } from './hooks';
 import { EmptyCard } from './EmptyCard';
@@ -46,7 +47,7 @@ export function CardList() {
         {sortCardListToDescendingOrderOfKey?.map(([cardId, card]) => (
           <Card
             key={cardId}
-            cardCompany={card?.cardCompany}
+            cardCompany={card?.cardCompany as CardCompany}
             cardExpireDate={card?.expireDates}
             cardNumbers={card.cardNumbers}
             cardOwnerName={card?.cardOwner}
