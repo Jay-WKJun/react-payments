@@ -1,0 +1,25 @@
+# dev
+dev/
+node_modules/
+src/
+docs/
+
+# pulic
+pulic/
+
+# html template
+index.html
+
+# configs
+.git
+.gitignore
+.eslintrc
+.eslintignore
+.babelrc
+.prettierrc
+.storybook/
+.husky/
+commitlint.config.js
+chromatic.yml
+tsconfig.json
+vite.config.js

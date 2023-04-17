@@ -1,9 +1,25 @@
-const vite = require('vite');
-const defineConfig = vite.defineConfig;
-const react = require('@vitejs/plugin-react');
-const viteTsconfigPaths = require('vite-tsconfig-paths').default;
+import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
+import dts from 'vite-plugin-dts';
+
+import { peerDependencies, dependencies } from './package.json';
 
 // https://vitejs.dev/config/
 module.exports = defineConfig({
-  plugins: [react(), viteTsconfigPaths()],
+  plugins: [dts(), react(), viteTsconfigPaths()],
+  build: {
+    lib: {
+      entry: path.join(path.resolve(), 'src/lib.ts'),
+      name: 'react-payments',
+      formats: ['es', 'cjs'],
+      fileName: 'react-payments'
+    },
+    rollupOptions: {
+      external: [...Object.keys(peerDependencies), ...Object.keys(dependencies)],
+    },
+    target: 'esnext',
+    sourcemap: true,
+  }
 });

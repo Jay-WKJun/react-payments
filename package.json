@@ -1,6 +1,18 @@
 {
   "name": "react-payments",
-  "version": "0.1.0",
+  "version": "0.9.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/react-payments.js",
+  "module": "./dist/react-payments.mjs",
+  "types": "./dist/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-payments.mjs",
+      "require": "./dist/react-payments.js"
+    }
+  },
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
@@ -89,6 +101,7 @@
     "husky": "^8.0.3",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
+    "vite-plugin-dts": "^2.3.0",
     "vite-tsconfig-paths": "^4.0.5"
   },
   "readme": "ERROR: No README data found!",
