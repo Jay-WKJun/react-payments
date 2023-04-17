@@ -2,10 +2,14 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { CardProvider } from '@/contexts/CardContext';
-import { ApplicationProvider, ApplicationContextProps } from '@/contexts/ApplicationContext';
+import { ApplicationProvider, ApplicationProviderProps } from '@/contexts/ApplicationContext';
 import { Router } from '@/router';
 
-interface AppProps extends ApplicationContextProps {}
+import { checkIsCardAndCardStateKeysSame } from './schemaChecker';
+
+checkIsCardAndCardStateKeysSame();
+
+interface AppProps extends ApplicationProviderProps {}
 
 export function App(props: AppProps) {
   return (
