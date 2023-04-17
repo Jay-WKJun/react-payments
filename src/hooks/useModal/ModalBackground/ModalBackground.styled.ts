@@ -1,7 +1,10 @@
 import { styled } from '@/stitches.config';
 
 export const StyledBackground = styled('div', {
-  flexCenter: 'column',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
   width: '100%',
   height: '100%',
   backgroundColor: 'rgba(20, 20, 20, 0.8)',

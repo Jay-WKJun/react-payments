@@ -1,12 +1,14 @@
 import { styled, css } from '@/stitches.config';
 
 export const cardThemeWrapperStyle = css({
+  // @ts-ignore
   flexCenter: 'column',
   margin: '10px 0',
 });
 
 export const StyledCard = styled('div', {
   position: 'relative',
+  // @ts-ignore
   flexCenter: 'column',
   width: '208px',
   height: '130px',
