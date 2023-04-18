@@ -24,4 +24,5 @@ export const StyledErrorMessage = styled('div', {
   alignItems: 'center',
   color: 'red',
   fontSize: '12px',
+  fontWeight: 'bold',
 });

@@ -34,15 +34,13 @@ function CardInfoInputElementComponent(
   // @ts-ignore
   useImperativeHandle(ref, () => inputRef.current);
 
-  const errorClassName = error?.isError ? 'error' : '';
-
   return (
     <StyledCardInfoInputElement className={className}>
       <StyledInput
         {...props}
         type={type ?? 'text'}
         value={value ?? ''}
-        className={errorClassName}
+        error={error?.isError}
         ref={inputRef}
         onChange={changeEventProps && createInputChangeHandler(changeEventProps)}
         onBlur={blurEventProps && createInputBlurHandler(blurEventProps)}

@@ -8,6 +8,14 @@ export const StyledInput = styled('input', {
   inputBasic: '',
   color: '$inputColor',
   boxSizing: 'border-box',
+
+  variants: {
+    error: {
+      true: {
+        border: '2px solid red',
+      },
+    },
+  },
 });
 
 export const StyledErrorMessage = styled('span', {

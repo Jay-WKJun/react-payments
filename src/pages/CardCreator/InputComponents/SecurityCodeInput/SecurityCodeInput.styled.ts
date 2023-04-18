@@ -7,5 +7,5 @@ export const StyledSecurityCodeInputContainer = styled('div', {
 });
 
 export const securityCodeInputStyle = css({
-  width: '25px',
+  width: '6em',
 });
