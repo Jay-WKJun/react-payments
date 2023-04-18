@@ -1,5 +1,4 @@
 import React, { MouseEvent, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Card, ThemeSetter } from '@/components';
 import { useCardContextApis, useCardContext } from '@/contexts/CardContext';
@@ -16,7 +15,12 @@ import {
   PasswordsInputList,
 } from './InputComponents';
 import { SubmitButton } from './SubmitButton';
-import { StyledErrorMessage, cardCreatorContainerStyle } from './CardCreator.styled';
+import {
+  StyledErrorMessage,
+  StyledCardCreatorTitle,
+  StyledBackButton,
+  cardCreatorContainerStyle,
+} from './CardCreator.styled';
 
 export function CardCreator() {
   const cardContext = useCardContext();
@@ -69,9 +73,10 @@ export function CardCreator() {
 
   return (
     <ThemeSetter className={cardCreatorContainerStyle()} theme={cardCompany.value?.theme}>
-      <h2 className="page-title">
-        <Link to={routes.home} className="mr-10">{`<`}</Link> 카드 추가
-      </h2>
+      <StyledCardCreatorTitle>
+        <StyledBackButton to={routes.home}>{`<`}</StyledBackButton>
+        <span>카드 추가</span>
+      </StyledCardCreatorTitle>
 
       <Card
         cardCompany={cardCompany.value}
