@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CardNumberProp } from './types';
+import { StyledCardNumbersContainer, StyledCardNumberWrapper } from './CardNumbers.styled';
 
 interface CardNumbersProps {
   cardNumbers?: CardNumberProp;
@@ -8,17 +9,17 @@ interface CardNumbersProps {
 
 export function CardNumbers({ cardNumbers }: CardNumbersProps) {
   return (
-    <div className="card-bottom__number">
+    <StyledCardNumbersContainer>
       {cardNumbers?.map((cardNumber, i) => {
         const isHide = i >= 2;
         return <CardNumber key={`card-number-${i}-${cardNumber}`} hide={isHide} value={cardNumber} />;
       })}
-    </div>
+    </StyledCardNumbersContainer>
   );
 }
 
 function CardNumber({ hide, value }: { hide: boolean; value: CardNumberProp[number] }) {
-  return <span className="card-number-wrapper card-number-spacing">{value && makeCardNumber(value, hide)}</span>;
+  return <StyledCardNumberWrapper>{value && makeCardNumber(value, hide)}</StyledCardNumberWrapper>;
 }
 
 function makeCardNumber(value: string, isHide: boolean) {

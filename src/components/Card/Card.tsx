@@ -7,7 +7,16 @@ import { CardOwnerName } from './CardOwnerName';
 import { CardExpireDate } from './CardExpireDate';
 import { CardNickname } from './CardNickname';
 import type { ExpireDateProp, CardNumberProp, CardCompanyProp, CardOwnerProp, CardNicknameProp } from './types';
-import { StyledCard, StyledEmptyCardCompany, cardThemeWrapperStyle } from './Card.styled';
+import {
+  StyledCard,
+  StyledEmptyCardCompany,
+  StyledCardTop,
+  StyledCardMiddle,
+  StyledCardBottom,
+  StyledCardBottomInfo,
+  StyledCardChip,
+  cardThemeWrapperStyle,
+} from './Card.styled';
 
 interface CardProps {
   disableNickname?: boolean;
@@ -35,18 +44,18 @@ export const Card = memo(function Card({
   return (
     <ThemeSetter className={cardThemeWrapperStyle()} theme={cardCompany?.theme} onClick={onCardClick}>
       <StyledCard pointCursor={!!onCardClick}>
-        <div className="card-top">{cardCompany?.name}</div>
-        <div className="card-middle">
-          <div className="small-card__chip" />
+        <StyledCardTop>{cardCompany?.name}</StyledCardTop>
+        <StyledCardMiddle>
+          <StyledCardChip />
           {!cardCompany && <StyledEmptyCardCompany>{`이곳을 눌러 \n카드사를 선택해주세요`}</StyledEmptyCardCompany>}
-        </div>
-        <div className="card-bottom">
+        </StyledCardMiddle>
+        <StyledCardBottom>
           <CardNumbers cardNumbers={cardNumbers} />
-          <div className="card-bottom__info">
+          <StyledCardBottomInfo>
             <CardOwnerName ownerName={cardOwnerName} />
             <CardExpireDate expireDates={cardExpireDate} />
-          </div>
-        </div>
+          </StyledCardBottomInfo>
+        </StyledCardBottom>
         {additionalIcon}
       </StyledCard>
       {disableNickname || <CardNickname nickname={cardNickname} />}

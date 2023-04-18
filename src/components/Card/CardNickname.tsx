@@ -13,5 +13,5 @@ interface CardNicknameProps {
 }
 
 export function CardNickname({ nickname }: CardNicknameProps) {
-  return <StyledCardNickname className="card-nickname">{nickname}</StyledCardNickname>;
+  return <StyledCardNickname>{nickname}</StyledCardNickname>;
 }
