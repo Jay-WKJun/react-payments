@@ -20,6 +20,5 @@ module.exports = defineConfig({
       external: [...Object.keys(peerDependencies || {}), ...Object.keys(dependencies || {})],
     },
     target: 'esnext',
-    sourcemap: true,
   }
 });
