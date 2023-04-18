@@ -10,10 +10,22 @@ export interface ApplicationProviderProps extends Partial<ApplicationContextProp
 
 export function ApplicationProvider({
   cardList = {},
-  onCardConfirm = (card, cardId) => console.log(`Confirm card : ${card} cardId : ${cardId}`),
-  onCardDelete = (card, cardId) => console.log(`Delete card : ${card} cardId : ${cardId}`),
-  onCardUpdate = (card, cardId) => console.log(`Update card : ${card} cardId : ${cardId}`),
-  onCardSubmit = (card, cardId) => console.log(`Submit card : ${card} cardId : ${cardId}`),
+  onCardConfirm = (card, cardId) => {
+    console.log(`cardId : ${cardId}`);
+    console.dir(card);
+  },
+  onCardDelete = (card, cardId) => {
+    console.log(`cardId : ${cardId}`);
+    console.dir(card);
+  },
+  onCardUpdate = (card, cardId) => {
+    console.log(`cardId : ${cardId}`);
+    console.dir(card);
+  },
+  onCardSubmit = (card, cardId) => {
+    console.log(`cardId : ${cardId}`);
+    console.dir(card);
+  },
   children,
 }: PropsWithChildren<ApplicationProviderProps>) {
   const AppContextValue = useMemo(() => {
