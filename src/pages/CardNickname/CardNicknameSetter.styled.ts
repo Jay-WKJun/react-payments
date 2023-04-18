@@ -4,6 +4,7 @@ export const StyledCarNicknameSetterWrapper = styled('div', {
   app: '',
   // @ts-ignore
   flexCenter: 'column',
+  minWidth: '210px',
 });
 
 export const StyledNicknameSetterHeaderWrapper = styled('div', {

@@ -1,7 +1,9 @@
 import { styled } from '@/stitches.config';
 
 export const StyledCardListContainer = styled('div', {
-  maxHeight: '700px',
+  minWidth: '280px',
+  height: '100%',
+  padding: '20px',
   app: '',
   // @ts-ignore
   boxSizing: 'border-box',

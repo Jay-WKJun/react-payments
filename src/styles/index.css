@@ -23,9 +23,7 @@ input {
   display: flex;
   background-color: #fff;
   border-radius: 15px;
-  width: 375px;
-  min-width: 375px;
-  min-height: 700px;
+  width: 100%;
 }
 
 #root {

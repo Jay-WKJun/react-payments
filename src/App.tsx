@@ -11,7 +11,7 @@ import { styled } from './stitches.config';
 checkIsCardAndCardStateKeysSame();
 
 const StyledApp = styled('div', {
-  width: '375px',
+  maxWidth: '375px',
   minWidth: '210px',
   height: '100%',
 });
