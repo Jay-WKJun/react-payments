@@ -2,10 +2,10 @@ import React, { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Card } from '@/components';
-import { useCardContext, useApplicationContext, convertCardStateToCard } from '@/contexts';
+import { useCardContext, useApplicationContext, convertCardStateToCard, CardState } from '@/contexts';
 import type { ExpireMonth, ExpireYear } from '@/types';
 
-import { useNicknameValidator, useValidateCreatePage, useValidateUpdatePage } from './hooks';
+import { useValidateCreatePage, useValidateUpdatePage } from './hooks';
 import { NicknameInput } from './NicknameInput';
 import { CardNicknameSubmitButton } from './CardNicknameSubmitButton';
 import {
@@ -21,22 +21,22 @@ export function CardNicknameSetter() {
   const cardContext = useCardContext();
   const appContext = useApplicationContext();
   const { cardId } = useParams();
-  const validateNickname = useNicknameValidator();
 
   const handleSubmitCard = useCallback(() => {
     if (!cardContext) return;
 
-    validateNickname();
+    const finalNickname = getFinalNickname(cardContext);
+    cardContext.cardNickname.value = finalNickname;
 
     const card = convertCardStateToCard(cardContext);
     const newCardId = cardId || String(new Date().getTime());
     appContext?.onCardSubmit(card, newCardId);
-  }, [cardContext, validateNickname, cardId, appContext]);
+  }, [cardContext, cardId, appContext]);
 
   const cardExpireDate = useMemo(() => {
     if (!cardContext) return;
 
-    return [cardContext.expireDates[0], cardContext.expireDates[1]] as [ExpireMonth, ExpireYear];
+    return [cardContext.expireDates[0].value, cardContext.expireDates[1].value] as [ExpireMonth, ExpireYear];
   }, [cardContext]);
   const cardNumbers = useMemo(
     () => cardContext?.cardNumbers.map((cardNumberState) => cardNumberState.value),
@@ -62,4 +62,13 @@ export function CardNicknameSetter() {
       <CardNicknameSubmitButton onSubmit={handleSubmitCard} />
     </StyledCarNicknameSetterWrapper>
   );
+}
+
+function getFinalNickname(cardState: CardState) {
+  const { cardNickname, cardCompany } = cardState;
+
+  if (!cardNickname || !cardNickname.value) {
+    return cardCompany.value?.name;
+  }
+  return cardNickname.value;
 }

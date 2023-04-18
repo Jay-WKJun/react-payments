@@ -1,7 +1,13 @@
 import { styled } from '@/stitches.config';
 
+export const StyledNicknameInputWrapper = styled('div', {
+  // @ts-ignore
+  flexCenter: 'column',
+  width: '100%',
+  margin: '16px 0',
+});
+
 export const StyledNicknameInput = styled('input', {
-  width: '75px',
   marginBottom: '10px',
   textAlign: 'center',
   border: 'none',
@@ -20,11 +26,4 @@ export const StyledNicknameInput = styled('input', {
       },
     },
   },
-});
-
-export const StyledNicknameInputWrapper = styled('div', {
-  // @ts-ignore
-  flexCenter: 'column',
-  width: '100px',
-  margin: '16px 0',
 });
