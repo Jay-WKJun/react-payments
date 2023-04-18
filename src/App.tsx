@@ -9,7 +9,7 @@ import { checkIsCardAndCardStateKeysSame } from './schemaChecker';
 
 checkIsCardAndCardStateKeysSame();
 
-interface AppProps extends ApplicationProviderProps {}
+export interface AppProps extends ApplicationProviderProps {}
 
 export function App(props: AppProps) {
   return (
