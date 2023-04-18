@@ -97,3 +97,9 @@
 https://velog.io/@juno7803/Storybook-Storybook-200-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0
 
 https://github.com/storybookjs/storybook/issues/15391
+
+
+# TODO
+
+[] 서버 구축 해서 JS 제공할 수 있도록 해주기 -> Micro-Frontend
+  [] Vercel 이용

@@ -4,11 +4,11 @@ import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
 
-import { peerDependencies, dependencies } from './package.json';
+import { dependencies } from './package.json';
 
 // https://vitejs.dev/config/
 module.exports = defineConfig({
-  plugins: [dts(), react(), viteTsconfigPaths()],
+  plugins: [react(), viteTsconfigPaths()],
   build: {
     lib: {
       entry: path.join(path.resolve(), 'src/lib.ts'),
@@ -17,7 +17,7 @@ module.exports = defineConfig({
       fileName: 'react-payments'
     },
     rollupOptions: {
-      external: [...Object.keys(peerDependencies || {}), ...Object.keys(dependencies || {})],
+      external: [...Object.keys(dependencies || {})],
     },
     target: 'esnext',
   }

@@ -21,6 +21,7 @@
     "declaration": true,
     "declarationDir": "dist",
     "emitDeclarationOnly": true,
+    "outDir": "dist",
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
@@ -33,5 +34,5 @@
     "src/**/*.stories.ts",
     "src/**/*.stories.tsx",
     "dist"
-  ]
+  ],
 }
