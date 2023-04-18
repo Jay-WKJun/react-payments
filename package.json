@@ -1,6 +1,6 @@
 {
-  "name": "react-payments",
-  "version": "0.9.0",
+  "name": "@LuckyJun/react-payments",
+  "version": "1.0.0",
   "files": [
     "dist"
   ],
@@ -13,6 +13,7 @@
       "require": "./dist/react-payments.js"
     }
   },
+  "author": "Woo KyungJun natcho9010@gmail.com",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
