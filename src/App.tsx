@@ -6,17 +6,28 @@ import { ApplicationProvider, ApplicationProviderProps } from '@/contexts/Applic
 import { Router } from '@/router';
 
 import { checkIsCardAndCardStateKeysSame } from './schemaChecker';
+import { styled } from './stitches.config';
 
 checkIsCardAndCardStateKeysSame();
 
-export interface AppProps extends ApplicationProviderProps {}
+const StyledApp = styled('div', {
+  width: '375px',
+  minWidth: '210px',
+  height: '100%',
+});
+
+export interface AppProps extends ApplicationProviderProps {
+  className?: string;
+}
 
 export function App(props: AppProps) {
   return (
     <BrowserRouter>
       <ApplicationProvider {...props}>
         <CardProvider>
-          <Router />
+          <StyledApp className={props.className}>
+            <Router />
+          </StyledApp>
         </CardProvider>
       </ApplicationProvider>
     </BrowserRouter>
