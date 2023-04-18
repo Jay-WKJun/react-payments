@@ -74,7 +74,6 @@ export const ExpireYearInput = memo(function ExpireYearInput({ expireYear, index
 
   return (
     <CardInfoInputElement
-      className="input-basic"
       type="text"
       value={value ?? ''}
       placeholder="년도"

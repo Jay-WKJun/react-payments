@@ -11,7 +11,7 @@ import { filterNumber } from '@/utils';
 
 import { CardInputWrapperPure, CardInfoInputElement } from '../components';
 import { SecurityCodeTooltip } from './SecurityCodeTooltip';
-import { StyledSecurityCodeInputContainer } from './SecurityCodeInput.styled';
+import { StyledSecurityCodeInputContainer, securityCodeInputStyle } from './SecurityCodeInput.styled';
 
 interface SecurityCodeInputProps {
   securityCode: CardState['securityCode'];
@@ -56,7 +56,7 @@ export const SecurityCodeInput = memo(function SecurityCodeInput({ securityCode 
     <CardInputWrapperPure header="보안코드(CVC/CVV)" errorMessage={securityCode.errorMessage}>
       <StyledSecurityCodeInputContainer>
         <CardInfoInputElement
-          className="input-basic w-25"
+          className={securityCodeInputStyle()}
           type="password"
           value={value ?? ''}
           ref={(el) => {

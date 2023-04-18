@@ -42,7 +42,7 @@ function CardInfoInputElementComponent(
         {...props}
         type={type ?? 'text'}
         value={value ?? ''}
-        className={`input-basic ${errorClassName}`}
+        className={errorClassName}
         ref={inputRef}
         onChange={changeEventProps && createInputChangeHandler(changeEventProps)}
         onBlur={blurEventProps && createInputBlurHandler(blurEventProps)}

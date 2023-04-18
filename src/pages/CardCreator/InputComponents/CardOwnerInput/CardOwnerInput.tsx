@@ -51,7 +51,6 @@ export const CardOwnerInput = memo(function CardOwnerInput({ cardOwner }: CardOw
     <CardInputWrapperPure header={inputHeader} errorMessage={cardOwner.errorMessage}>
       <CardInfoInputElement
         type="text"
-        className="input-basic"
         value={cardOwner?.value ?? ''}
         placeholder="소유주 이름"
         ref={(el) => {

@@ -1,6 +1,11 @@
 import { PropsWithChildren, memo } from 'react';
 
-import { StyledErrorMessage } from './CardInputWrapper.styled';
+import {
+  StyledCardInputWrapper,
+  StyledHeaderWrapper,
+  StyledHeader,
+  StyledErrorMessage,
+} from './CardInputWrapper.styled';
 
 interface CardInputWrapperProps extends PropsWithChildren {
   header: string[] | string;
@@ -12,17 +17,15 @@ function CardInputWrapper({ header, errorMessage, children }: CardInputWrapperPr
   const isError = !!errorMessage;
 
   return (
-    <div className="input-container">
-      <div className="flex-between">
+    <StyledCardInputWrapper>
+      <StyledHeaderWrapper>
         {headers.map((header) => (
-          <span key={`input-header-${header}`} className="input-title">
-            {header}
-          </span>
+          <StyledHeader key={`input-header-${header}`}>{header}</StyledHeader>
         ))}
-      </div>
+      </StyledHeaderWrapper>
       <div>{children}</div>
       {isError && <StyledErrorMessage>{errorMessage}</StyledErrorMessage>}
-    </div>
+    </StyledCardInputWrapper>
   );
 }
 

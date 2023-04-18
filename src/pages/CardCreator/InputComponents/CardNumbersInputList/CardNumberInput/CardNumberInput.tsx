@@ -65,7 +65,6 @@ export const CardNumberInput = memo(function CardNumberInput({
         ref={(el) => {
           if (el) setElement(el, 'cardNumbers', index);
         }}
-        className="input-basic"
         changeEventProps={changeEventProps}
         error={{ isError }}
         onFocus={handleCardNumberInputFocus}

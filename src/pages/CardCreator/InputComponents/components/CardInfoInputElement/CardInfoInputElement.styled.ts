@@ -5,6 +5,7 @@ export const StyledCardInfoInputElement = styled('div', {
 });
 
 export const StyledInput = styled('input', {
+  inputBasic: '',
   color: '$inputColor',
   boxSizing: 'border-box',
 });

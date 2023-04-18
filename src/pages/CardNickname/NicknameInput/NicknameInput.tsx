@@ -2,7 +2,7 @@ import React, { ChangeEvent, useCallback } from 'react';
 
 import { CardNicknameState, useCardContextApis } from '@/contexts/CardContext';
 
-import { StyledNicknameInput } from './NicknameInput.styled';
+import { StyledNicknameInput, StyledNicknameInputWrapper } from './NicknameInput.styled';
 
 interface NicknameInputProps {
   cardNickname?: CardNicknameState;
@@ -19,16 +19,15 @@ export function NicknameInput({ cardNickname }: NicknameInputProps) {
   );
 
   return (
-    <div className="input-container flex-column-center w-100">
+    <StyledNicknameInputWrapper>
       <StyledNicknameInput
         autoFocus
-        className="input-underline w-75"
         type="text"
         maxLength={10}
         value={cardNickname?.value || ''}
         placeholder="카드 별칭 (선택)"
         onChange={handleCardNicknameChange}
       />
-    </div>
+    </StyledNicknameInputWrapper>
   );
 }

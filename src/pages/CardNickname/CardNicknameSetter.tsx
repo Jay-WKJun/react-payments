@@ -8,7 +8,11 @@ import type { ExpireMonth, ExpireYear } from '@/types';
 import { useNicknameValidator, useValidateCreatePage, useValidateUpdatePage } from './hooks';
 import { NicknameInput } from './NicknameInput';
 import { CardNicknameSubmitButton } from './CardNicknameSubmitButton';
-import { StyledCarNicknameSetterWrapper } from './CardNicknameSetter.styled';
+import {
+  StyledCarNicknameSetterWrapper,
+  StyledNicknameSetterHeader,
+  StyledNicknameSetterHeaderWrapper,
+} from './CardNicknameSetter.styled';
 
 export function CardNicknameSetter() {
   useValidateCreatePage();
@@ -41,9 +45,9 @@ export function CardNicknameSetter() {
 
   return (
     <StyledCarNicknameSetterWrapper>
-      <div className="flex-center">
-        <h2 className="page-title mb-10">카드등록이 완료되었습니다.</h2>
-      </div>
+      <StyledNicknameSetterHeaderWrapper>
+        <StyledNicknameSetterHeader>카드등록이 완료되었습니다.</StyledNicknameSetterHeader>
+      </StyledNicknameSetterHeaderWrapper>
 
       <Card
         disableNickname

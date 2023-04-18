@@ -87,7 +87,6 @@ export const ExpireMonthInput = memo(function ExpireMonthInput({
   return (
     <>
       <CardInfoInputElement
-        className="input-basic"
         type="text"
         value={value ?? ''}
         placeholder="월"

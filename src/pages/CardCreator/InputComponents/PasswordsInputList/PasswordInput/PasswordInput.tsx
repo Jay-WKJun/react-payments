@@ -10,6 +10,7 @@ import { useSequentialFocus } from '@/pages/CardCreator/hooks';
 import { filterNumber } from '@/utils';
 
 import { CardInfoInputElement } from '../../components';
+import { passwordInputStyle } from './PasswordInput.styled';
 
 interface PasswordInputProps {
   password: CardPasswordState;
@@ -53,7 +54,7 @@ export function PasswordInput({ password, index }: PasswordInputProps) {
   return (
     <CardInfoInputElement
       type="password"
-      className="input-basic w-15 mr-10"
+      className={passwordInputStyle()}
       value={value ?? ''}
       ref={(el) => {
         setElement(el, 'passwords', index);

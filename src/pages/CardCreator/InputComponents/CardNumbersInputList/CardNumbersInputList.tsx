@@ -5,6 +5,7 @@ import { checkIsArrayLast } from '@/utils';
 
 import { CardInputWrapperPure } from '../components';
 import { CardNumberInput } from './CardNumberInput';
+import { StyledCardNumbersContainer } from './CardNumbersInputList.styled';
 
 export interface CardNumbersInputListRefs {
   checkIsEveryInputValid: () => boolean;
@@ -19,7 +20,7 @@ export const CardNumbersInputList = memo(function CardNumbersInputList({ cardNum
 
   return (
     <CardInputWrapperPure header="카드 번호" errorMessage={errorMessage}>
-      <div className="input-box">
+      <StyledCardNumbersContainer>
         {cardNumbers?.map((cardNumber, i) => {
           const isLast = checkIsArrayLast(cardNumbers, i);
           const isPasswordType = i >= cardNumbers.length - 2;
@@ -33,7 +34,7 @@ export const CardNumbersInputList = memo(function CardNumbersInputList({ cardNum
             />
           );
         })}
-      </div>
+      </StyledCardNumbersContainer>
     </CardInputWrapperPure>
   );
 });
