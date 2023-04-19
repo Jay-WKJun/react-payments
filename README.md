@@ -1,10 +1,11 @@
 <!-- TODO: code sandbox 추가 -->
 
+# React Payments 💳
+
 <p align="middle" >
   <img src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/0fefce79602043a9b3281ee1dd8f4be6" width="400">
 </p>
 
-**<p align="center">React Payments 💳</p>**
 **<p align="center">A Simple Payments manager</p>**
 
 Look around every component of this Package in **[📙 Storybook](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)**
