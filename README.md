@@ -1,5 +1,3 @@
-<!-- TODO: code sandbox 추가 -->
-
 # React Payments 💳
 
 <p align="middle" >
@@ -9,6 +7,8 @@
 **<h3 align="center">A Simple Payments manager 🗂️</h3>**
 
 **<h3 align="center">[📙 Storybook](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)</h3>**
+
+**<h3 align="center">[Try on ⚡️ StackBlitz](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)</h3>**
 
 <p align="middle" >
   <img src="./docs/readme/payments_demo.gif" width="400">
