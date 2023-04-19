@@ -11,6 +11,8 @@
   <img src="./docs/readme/payments_demo.gif" width="400">
 </p>
 
+Look around every component of this Package in [📙 Storybook](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)
+
 <hr style="{ margin-top: 10px; margin-bottom: 10px }" />
 
 # ⚙️ Features
@@ -19,6 +21,7 @@
 
 - Automatic next Input focusing 👀
 - Re-Usable, Every State is on you! 📑
+- Validation Complete 🚥
 - Flexible CSS, optimal in mobile 🖼️
 
 # 🙌 Get Start!
