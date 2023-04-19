@@ -1,6 +1,6 @@
 {
-  "name": "@LuckyJun/react-payments",
-  "version": "1.0.0",
+  "name": "@luckyjun/react-payments",
+  "version": "1.0.1",
   "files": [
     "dist"
   ],

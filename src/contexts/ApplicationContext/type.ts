@@ -1,6 +1,7 @@
 import z from 'zod';
 
 import {
+  CardCompany,
   cardCompanySchema,
   cardNickNameSchema,
   cardNumberSchema,
@@ -21,7 +22,9 @@ export const CardSchema = z.object({
   passwords: z.array(cardPasswordSchema).length(2),
 });
 
-export type Card = z.infer<typeof CardSchema>;
+export interface Card extends z.infer<typeof CardSchema> {
+  cardCompany: CardCompany;
+}
 export type CardList = { [cardId: string]: Card };
 
 export interface ApplicationContextProps {
