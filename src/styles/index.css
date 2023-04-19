@@ -23,7 +23,8 @@ input {
   display: flex;
   background-color: #fff;
   border-radius: 15px;
-  width: 100%;
+  width: 370px;
+  height: 700px;
 }
 
 #root {
