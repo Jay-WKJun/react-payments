@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { Card, CardList } from '@/contexts/ApplicationContext';
 
@@ -43,12 +44,14 @@ export function Dev() {
   }, []);
 
   return (
-    <App
-      cardList={cardList}
-      onCardConfirm={(card) => console.log(card)}
-      onCardSubmit={handleCardSubmit}
-      onCardDelete={handleCardDelete}
-      onCardUpdate={handleCardUpdate}
-    />
+    <BrowserRouter>
+      <App
+        cardList={cardList}
+        onCardConfirm={(card) => console.log(card)}
+        onCardSubmit={handleCardSubmit}
+        onCardDelete={handleCardDelete}
+        onCardUpdate={handleCardUpdate}
+      />
+    </BrowserRouter>
   );
 }

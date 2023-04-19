@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 import { CardProvider } from '@/contexts/CardContext';
 import { ApplicationProvider, ApplicationProviderProps } from '@/contexts/ApplicationContext';
@@ -22,14 +21,12 @@ export interface AppProps extends ApplicationProviderProps {
 
 export function App(props: AppProps) {
   return (
-    <BrowserRouter>
-      <ApplicationProvider {...props}>
-        <CardProvider>
-          <StyledApp className={props.className}>
-            <Router />
-          </StyledApp>
-        </CardProvider>
-      </ApplicationProvider>
-    </BrowserRouter>
+    <ApplicationProvider {...props}>
+      <CardProvider>
+        <StyledApp className={props.className}>
+          <Router />
+        </StyledApp>
+      </CardProvider>
+    </ApplicationProvider>
   );
 }
