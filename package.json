@@ -1,6 +1,6 @@
 {
   "name": "luckyjun-react-payments",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "files": [
     "dist"
   ],
@@ -12,6 +12,10 @@
       "import": "./dist/react-payments.mjs",
       "require": "./dist/react-payments.js"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jay-WKJun/react-payments"
   },
   "author": "Woo KyungJun natcho9010@gmail.com",
   "categories": [
