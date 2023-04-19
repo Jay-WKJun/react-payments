@@ -11,7 +11,7 @@
 **<h3 align="center">[Try on ⚡️ StackBlitz](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)</h3>**
 
 <p align="middle" >
-  <img src="./docs/readme/payments_demo.gif" width="400">
+  <img src="./payments_demo.gif" width="400">
 </p>
 
 # ⚙️ Features
