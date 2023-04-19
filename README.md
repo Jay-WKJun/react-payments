@@ -6,13 +6,9 @@
   <img src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/0fefce79602043a9b3281ee1dd8f4be6" width="400">
 </p>
 
-**<p align="center">A Simple Payments manager</p>**
+**<h3 align="center">A Simple Payments manager 🗂️</h3>**
 
-Look around every component of this Package in **[📙 Storybook](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)**
-
-<hr style="{ margin-top: 10px; margin-bottom: 10px }" />
-
-# 🎥 Demo
+**<h3 align="center">[📙 Storybook](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)</h3>**
 
 <p align="middle" >
   <img src="./docs/readme/payments_demo.gif" width="400">
