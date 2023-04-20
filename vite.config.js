@@ -20,5 +20,10 @@ module.exports = defineConfig({
       external: [...Object.keys(dependencies || {})],
     },
     target: 'esnext',
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './setupTests.js',
   }
 });
