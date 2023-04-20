@@ -23,7 +23,7 @@ export function App(props: AppProps) {
   return (
     <ApplicationProvider {...props}>
       <CardProvider>
-        <StyledApp className={props.className}>
+        <StyledApp className={props.className} data-testid="payments">
           <Router />
         </StyledApp>
       </CardProvider>

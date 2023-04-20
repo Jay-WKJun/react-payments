@@ -27,7 +27,7 @@ export type CardOwner = z.infer<typeof cardOwnerSchema>;
 export const cardPasswordSchema = z.string().length(1);
 export type CardPassword = z.infer<typeof cardPasswordSchema>;
 
-export const expireMonthSchema = z.string().max(2);
+export const expireMonthSchema = z.string().max(2).regex(/(^0?[1-9]$)|(^1[0-2]$)/);
 export type ExpireMonth = z.infer<typeof expireMonthSchema>;
 
 export const expireYearSchema = z.string().max(2);
