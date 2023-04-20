@@ -1,5 +1,4 @@
 import React, { MouseEvent, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Card } from '@/components';
 import { Card as CardModel, useApplicationContext } from '@/contexts/ApplicationContext';
@@ -13,6 +12,7 @@ import {
   StyledConfirmButton,
   StyledCardModalButton,
 } from './CardModal.styled';
+import { useRouterContextApi } from '@/contexts';
 
 export type TCardModalDTO = { id: string; card: CardModel };
 
@@ -22,7 +22,7 @@ interface CardModalProps {
 }
 
 export function CardModal({ cardInfo, onModalHide }: CardModalProps) {
-  const navigator = useNavigate();
+  const routerContextApi = useRouterContextApi();
   const appContext = useApplicationContext();
 
   const { Modal, showModal } = useModal();
@@ -47,7 +47,7 @@ export function CardModal({ cardInfo, onModalHide }: CardModalProps) {
 
     e.stopPropagation();
 
-    navigator(routes.createCardNickname(cardInfo?.id));
+    routerContextApi?.navigate(routes.nicknameUpdate, { cardId: cardInfo?.id });
   };
 
   if (!cardInfo) return null;

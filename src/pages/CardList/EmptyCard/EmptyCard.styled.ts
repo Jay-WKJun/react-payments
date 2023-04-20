@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-
 import { styled } from '@/stitches.config';
+import { Link } from '@/components';
 
 export const StyledEmptyCardWrapper = styled(Link, {
   // @ts-ignore

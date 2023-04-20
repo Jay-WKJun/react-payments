@@ -1,7 +1,6 @@
 import React, { JSXElementConstructor, useCallback, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { BrowserRouter } from 'react-router-dom';
 import { CardContext, CardProvider, ApplicationProvider, Card, CardList, CardState } from '@/contexts';
 import { postToLocalStorage } from '@/service';
 
@@ -31,14 +30,11 @@ const Template: ComponentStory<JSXElementConstructor<CardState>> = (cardState) =
   console.log('cardList : ', cardList);
 
   return (
-    <BrowserRouter>
-      {/* @ts-ignore */}
-      <ApplicationProvider cardList={cardList} onCardSubmit={handleCardSubmit}>
-        <CardProvider cardInit={cardState}>
-          <CardContext.Consumer>{(store) => store && <CardNicknameSetter />}</CardContext.Consumer>
-        </CardProvider>
-      </ApplicationProvider>
-    </BrowserRouter>
+    <ApplicationProvider cardList={cardList} onCardSubmit={handleCardSubmit}>
+      <CardProvider cardInit={cardState}>
+        <CardContext.Consumer>{(store) => store && <CardNicknameSetter />}</CardContext.Consumer>
+      </CardProvider>
+    </ApplicationProvider>
   );
 };
 

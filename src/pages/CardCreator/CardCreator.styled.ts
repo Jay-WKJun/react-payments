@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-
 import { styled, css } from '@/stitches.config';
+
+import { Link } from '@/components';
 
 export const cardCreatorContainerStyle = css({
   app: '',

@@ -4,7 +4,6 @@ import React from 'react';
 import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { App, AppProps } from './App';
-import { BrowserRouter } from 'react-router-dom';
 
 let props: AppProps = {
   cardList: {
@@ -47,9 +46,7 @@ describe('App props tests', () => {
 
   it('success case', () => {
     render(
-      <BrowserRouter>
-        <App {...props} />
-      </BrowserRouter>
+      <App {...props} />
     );
 
     const appElement = screen.getByTestId('payments');
@@ -61,10 +58,7 @@ describe('App props tests', () => {
     props.onCardConfirm = '';
 
     expect(() => render(
-      <BrowserRouter>
-        {/* @ts-ignore */}
-        <App {...props} />
-      </BrowserRouter>
+      <App {...props} />
     )).toThrow('onCardConfirm Prop에는 function만 넣어주세요.');
   });
 
@@ -73,10 +67,7 @@ describe('App props tests', () => {
     props.onCardDelete = '';
 
     expect(() => render(
-      <BrowserRouter>
-        {/* @ts-ignore */}
-        <App {...props} />
-      </BrowserRouter>
+      <App {...props} />
     )).toThrow('onCardDelete Prop에는 function만 넣어주세요.');
   });
 
@@ -85,10 +76,7 @@ describe('App props tests', () => {
     props.onCardSubmit = '';
 
     expect(() => render(
-      <BrowserRouter>
-        {/* @ts-ignore */}
-        <App {...props} />
-      </BrowserRouter>
+      <App {...props} />
     )).toThrow('onCardSubmit Prop에는 function만 넣어주세요.');
   });
 
@@ -97,10 +85,7 @@ describe('App props tests', () => {
     props.onCardUpdate = '';
 
     expect(() => render(
-      <BrowserRouter>
-        {/* @ts-ignore */}
-        <App {...props} />
-      </BrowserRouter>
+      <App {...props} />
     )).toThrow('onCardUpdate Prop에는 function만 넣어주세요.');
   });
 
@@ -110,10 +95,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardCompany = {};
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -122,10 +104,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardCompany = { name: 'adsf', theme: 'dark' };
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });
@@ -136,10 +115,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardNickname = {};
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -148,10 +124,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardNickname = 'very Long name of cardNickname';
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });
@@ -162,10 +135,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardOwner = {};
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -174,10 +144,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardOwner = 'very Long name of cardOwner over 30 very very long';
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });
@@ -188,10 +155,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardNumbers = '';
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -200,10 +164,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardNumbers = ['1233', '1234', '1234'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -212,10 +173,7 @@ describe('App props tests', () => {
       props.cardList.card1.cardNumbers = ['123', '1234', '1234', '1234'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });
@@ -226,10 +184,7 @@ describe('App props tests', () => {
       props.cardList.card1.passwords = '';
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -238,10 +193,7 @@ describe('App props tests', () => {
       props.cardList.card1.passwords = ['1'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -250,10 +202,7 @@ describe('App props tests', () => {
       props.cardList.card1.passwords = ['12', '1'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });
@@ -264,10 +213,7 @@ describe('App props tests', () => {
       props.cardList.card1.expireDates = '';
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -276,10 +222,7 @@ describe('App props tests', () => {
       props.cardList.card1.expireDates = ['12'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -288,10 +231,7 @@ describe('App props tests', () => {
       props.cardList.card1.expireDates = ['13', '43'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -300,10 +240,7 @@ describe('App props tests', () => {
       props.cardList.card1.expireDates = ['11', '323'];
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });
@@ -314,10 +251,7 @@ describe('App props tests', () => {
       props.cardList.card1.securityCode = {};
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
 
@@ -326,10 +260,7 @@ describe('App props tests', () => {
       props.cardList.card1.securityCode = '1234';
 
       expect(() => render(
-        <BrowserRouter>
-          {/* @ts-ignore */}
-          <App {...props} />
-        </BrowserRouter>
+        <App {...props} />
       )).toThrow('');
     });
   });

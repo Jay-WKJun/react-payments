@@ -1,6 +1,5 @@
 import React, { JSXElementConstructor, useCallback, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { BrowserRouter } from 'react-router-dom';
 
 import { ApplicationProvider, Card, CardList as CardListModel } from '@/contexts';
 import { postToLocalStorage } from '@/service';
@@ -49,17 +48,14 @@ const Template: ComponentStory<JSXElementConstructor<CardListModel>> = (cardList
   console.log('cardList : ', cardList);
 
   return (
-    <BrowserRouter>
-      {/* @ts-ignore */}
-      <ApplicationProvider
-        cardList={cardList}
-        onCardSubmit={handleCardSubmit}
-        onCardDelete={handleCardDelete}
-        onCardUpdate={handleCardUpdate}
-      >
-        <CardList />
-      </ApplicationProvider>
-    </BrowserRouter>
+    <ApplicationProvider
+      cardList={cardList}
+      onCardSubmit={handleCardSubmit}
+      onCardDelete={handleCardDelete}
+      onCardUpdate={handleCardUpdate}
+    >
+      <CardList />
+    </ApplicationProvider>
   );
 };
 

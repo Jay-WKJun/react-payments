@@ -1,8 +1,7 @@
-import React, { useCallback, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { MouseEvent, useCallback, useMemo } from 'react';
 
 import { Card } from '@/components';
-import { useCardContext, useApplicationContext, convertCardStateToCard, CardState } from '@/contexts';
+import { useCardContext, useApplicationContext, convertCardStateToCard, CardState, useRouterContext } from '@/contexts';
 import type { ExpireMonth, ExpireYear } from '@/types';
 
 import { useValidateCreatePage, useValidateUpdatePage } from './hooks';
@@ -20,10 +19,14 @@ export function CardNicknameSetter() {
 
   const cardContext = useCardContext();
   const appContext = useApplicationContext();
-  const { cardId } = useParams();
+  const routerContext = useRouterContext();
+  const cardId = routerContext?.params.cardId;
 
-  const handleSubmitCard = useCallback(() => {
-    if (!cardContext) return;
+  const handleSubmitCard = useCallback((e: MouseEvent<HTMLElement>) => {
+    if (!cardContext) {
+      e.preventDefault();
+      return;
+    }
 
     const finalNickname = getFinalNickname(cardContext);
     cardContext.cardNickname.value = finalNickname;

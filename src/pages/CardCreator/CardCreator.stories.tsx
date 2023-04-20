@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CardProvider } from '@/contexts/CardContext';
@@ -17,15 +16,13 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof CardCreator> = () => {
   return (
-    <BrowserRouter>
-      <CardProvider>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div className="root">
-            <CardCreator />
-          </div>
+    <CardProvider>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="root">
+          <CardCreator />
         </div>
-      </CardProvider>
-    </BrowserRouter>
+      </div>
+    </CardProvider>
   );
 };
 

@@ -5,7 +5,7 @@ import { routes } from '@/router';
 import { StyledNicknameSubmitButton, StyledNicknameSubmitButtonText } from './CardNicknameSubmitButton.styled';
 
 interface CardNicknameSubmitButtonProps {
-  onSubmit: (e: MouseEvent<HTMLAnchorElement>) => void;
+  onSubmit: (e: MouseEvent<HTMLElement>) => void;
 }
 
 export function CardNicknameSubmitButton({ onSubmit }: CardNicknameSubmitButtonProps) {

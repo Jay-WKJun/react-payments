@@ -6,6 +6,7 @@ import { Router } from '@/router';
 
 import { checkIsCardAndCardStateKeysSame } from './schemaChecker';
 import { styled } from './stitches.config';
+import { RouterProvider } from './contexts';
 
 checkIsCardAndCardStateKeysSame();
 
@@ -22,11 +23,13 @@ export interface AppProps extends ApplicationProviderProps {
 export function App(props: AppProps) {
   return (
     <ApplicationProvider {...props}>
-      <CardProvider>
-        <StyledApp className={props.className} data-testid="payments">
-          <Router />
-        </StyledApp>
-      </CardProvider>
+      <RouterProvider>
+        <CardProvider>
+          <StyledApp className={props.className} data-testid="payments">
+            <Router />
+          </StyledApp>
+        </CardProvider>
+      </RouterProvider>
     </ApplicationProvider>
   );
 }

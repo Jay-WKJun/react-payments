@@ -49,8 +49,11 @@ export function CardCreator() {
   const validateCardStates = useCardStatesValidator();
 
   const handleSubmit = useCallback(
-    (e: MouseEvent<HTMLAnchorElement>) => {
-      if (!cardContext) return;
+    (e: MouseEvent<HTMLElement>) => {
+      if (!cardContext) {
+        e.preventDefault();
+        return;
+      }
 
       const { cardCompany, cardNumbers, expireDates, cardOwner, passwords, securityCode } = cardContext;
       const isValidate = validateCardStates([
