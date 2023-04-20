@@ -6,6 +6,13 @@
 
 **<h3 align="center">A Simple Payments manager 🗂️</h3>**
 
+<div align="center">
+
+[![Run Tests](https://github.com/Jay-WKJun/react-payments/actions/workflows/test.yml/badge.svg)](https://hits.seeyoufarm.com) [![Hits](https://github.com/Jay-WKJun/react-payments/actions/workflows/publish.yml/badge.svg)](https://hits.seeyoufarm.com) [![npm version](https://badge.fury.io/js/luckyjun-react-payments.svg)](https://badge.fury.io/js/luckyjun-react-payments)
+
+</div>
+
+
 **<h3 align="center">[📙 Storybook](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)</h3>**
 
 **<h3 align="center">[Try on ⚡️ StackBlitz](https://64153ae64ded91dc4965aab5-uhqixrgsat.chromatic.com/)</h3>**
