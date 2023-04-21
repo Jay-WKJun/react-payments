@@ -1,8 +1,8 @@
 import React, { JSXElementConstructor, useCallback, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, ApplicationProvider, Card, CardList, CardState } from '@/contexts';
-import { postToLocalStorage } from '@/service';
+import { CardContext, CardProvider, ApplicationProvider, Card, CardList, CardState } from '../../contexts';
+import { postToLocalStorage } from '../../service';
 
 import { CardNicknameSetter } from './CardNicknameSetter';
 

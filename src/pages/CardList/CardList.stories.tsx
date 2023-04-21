@@ -1,8 +1,8 @@
 import React, { JSXElementConstructor, useCallback, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ApplicationProvider, Card, CardList as CardListModel } from '@/contexts';
-import { postToLocalStorage } from '@/service';
+import { ApplicationProvider, Card, CardList as CardListModel } from '../../contexts';
+import { postToLocalStorage } from '../../service';
 
 import { CardList } from './CardList';
 

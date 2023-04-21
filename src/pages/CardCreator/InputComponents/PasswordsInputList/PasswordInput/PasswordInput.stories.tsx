@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardContext, CardProvider, getInitialCardState } from '@/contexts/CardContext';
+import { CardContext, CardProvider, getInitialCardState } from '../../../../../contexts';
 
 import { PasswordInput } from './PasswordInput';
 

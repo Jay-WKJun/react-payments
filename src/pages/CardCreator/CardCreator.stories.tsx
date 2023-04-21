@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { CardProvider } from '@/contexts/CardContext';
+import { CardProvider } from '../../contexts';
 
 import { CardCreator } from './CardCreator';
 
