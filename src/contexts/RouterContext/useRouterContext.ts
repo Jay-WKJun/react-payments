@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { RouterContext, RouterContextApi } from './RouterContext';
+import { RouterContext, RouterContextApi } from './routerContext';
 
 export function useRouterContext() {
   return useContext(RouterContext);

@@ -1,22 +1,23 @@
 import React, { PropsWithChildren, useMemo, useState } from 'react';
 
-import { RouterContext, RouterContextApi } from './RouterContext';
+import { routes } from '@/router';
+
+import { RouterContext, RouterContextApi } from './routerContext';
 import { RouterContextProps } from './type';
 
 interface RouterProviderProps {}
 
 export function RouterProvider({ children }: PropsWithChildren<RouterProviderProps>) {
   const [router, setRouter] = useState<RouterContextProps>({
-    path: '',
+    path: routes.home,
     params: {},
   });
 
   const routerApi = useMemo(() => {
     const navigate = (path: string, params?: { [key: string]: string }) => {
-      setRouter((prev) => ({
+      setRouter(() => ({
         path,
         params: {
-          ...prev.params,
           ...params,
         }
       }));
