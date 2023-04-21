@@ -8,4 +8,5 @@ export const StyledNicknameSubmitButton = styled('div', {
 
 export const StyledNicknameSubmitButtonText = styled(Link, {
   buttonText: '',
+  buttonInit: '',
 });

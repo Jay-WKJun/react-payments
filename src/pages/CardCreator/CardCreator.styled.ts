@@ -17,6 +17,10 @@ export const StyledCardCreatorTitle = styled('h2', {
 
 export const StyledBackButton = styled(Link, {
   marginRight: '10px',
+  buttonInit: '',
+  backgroundColor: '$cardBackground',
+  padding: '5px 10px',
+  borderRadius: '5px',
 });
 
 export const StyledErrorMessage = styled('span', {

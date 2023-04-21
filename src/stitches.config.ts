@@ -45,6 +45,14 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
     }),
     buttonText: () => ({
       marginRight: '10px',
+      padding: '10px 20px',
+      borderRadius: '10px',
+      backgroundColor: '$cardBackground',
+      fontWeight: 'bold',
+    }),
+    buttonInit: () => ({
+      border: 'none',
+      cursor: 'pointer',
     }),
   },
 });

@@ -4,12 +4,16 @@ import { Link } from '@/components';
 export const StyledEmptyCardWrapper = styled(Link, {
   // @ts-ignore
   flexCenter: '',
+  buttonInit: '',
+
   margin: '10px 0',
+  backgroundColor: 'transparent',
 });
 
 export const StyledEmptyCard = styled('div', {
   // @ts-ignore
   flexCenter: 'column',
+
   width: '208px',
   height: '130px',
   fontSize: '30px',
